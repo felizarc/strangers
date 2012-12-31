@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <EditText
+        android:id="@+id/connexionEmailInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="98dp"
+        android:ems="10"
+        android:hint="@string/general_username"
+        android:inputType="textEmailAddress" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/connexionPasswordInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/connexionEmailInput"
+        android:layout_alignRight="@id/connexionEmailInput"
+        android:layout_below="@id/connexionEmailInput"
+        android:layout_marginTop="31dp"
+        android:ems="10"
+        android:hint="@string/general_password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/connexionLoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/connexionPasswordInput"
+        android:layout_alignRight="@id/connexionPasswordInput"
+        android:layout_below="@id/connexionPasswordInput"
+        android:layout_marginTop="30dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/general_connection"
+        android:onClick="actionConnexion" />
+
+
+</RelativeLayout>

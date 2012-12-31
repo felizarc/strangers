@@ -22,6 +22,19 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
+		<activity
+			android:name="com.example.strangers.Inscription"
+			android:label="@string/title_activity_inscription" >
+		</activity>
+		<activity
+			android:name="com.example.strangers.Login"
+			android:label="@string/title_activity_login"
+			android:parentActivityName="com.example.strangers.MainActivity"
+			android:windowSoftInputMode="adjustResize|stateVisible" >
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value="com.example.strangers.MainActivity" />
+		</activity>
 	</application>
 
 </manifest>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <EditText
+            android:id="@+id/prenomInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="108dp"
+            android:ems="10"
+            android:hint="@string/inscription_firstname" />
+
+
+        <EditText
+            android:id="@+id/emailInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/prenomInput"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@id/prenomInput"
+            android:layout_marginTop="53dp"
+            android:ems="10"
+            android:hint="@string/general_username"
+            android:inputType="textEmailAddress" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/nameInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/prenomInput"
+            android:layout_below="@id/prenomInput"
+            android:layout_marginTop="17dp"
+            android:ems="10"
+            android:hint="@string/inscription_lastname" />
+
+
+
+	<EditText
+            android:id="@+id/phoneInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/nameInput"
+            android:layout_alignRight="@id/nameInput"
+            android:layout_below="@+id/nameInput"
+            android:layout_marginTop="34dp"
+            android:ems="10"
+            android:hint="@string/inscription_phone"
+            android:inputType="phone" />
+
+	<EditText
+            android:id="@+id/passwordInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/phoneInput"
+            android:layout_alignRight="@id/phoneInput"
+            android:layout_below="@id/phoneInput"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/general_password"
+            android:inputType="textPassword" />
+        
+        <Button
+            android:id="@+id/inscriptionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/passwordInput"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="33dp"
+            android:text="@string/inscription_submit"
+            android:onClick="inscription" />
+
+
+
+    </RelativeLayout>

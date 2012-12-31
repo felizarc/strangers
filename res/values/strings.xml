@@ -5,5 +5,15 @@
 	<string name="hello_world">Hello world!</string>
 	<string name="menu_settings">Settings</string>
 	<string name="title_activity_main">Strangers</string>
+	<string name="general_password">mot de passe</string>
+	<string name="general_username">Pseudo</string>
+	<string name="general_connection">connexion</string>
+	<string name="inscription_firstname">prénom</string>
+	<string name="inscription_lastname">nom</string>
+	<string name="inscription_phone">téléphone</string>
+	<string name="inscription_submit">Créer</string>
+	<string name="login_menu_newAccount">Nouveau compte</string>
+	<string name="title_activity_inscription">Inscription</string>
+	<string name="title_activity_login">Login</string>
 
 </resources>
