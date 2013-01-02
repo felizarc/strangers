@@ -1,4 +1,7 @@
-package com.example.strangers;
+package com.example.strangers.controler;
+
+import com.example.strangers.R;
+import com.example.strangers.R.layout;
 
 import android.app.ActionBar;
 import android.app.Activity;

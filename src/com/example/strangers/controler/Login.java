@@ -1,4 +1,9 @@
-package com.example.strangers;
+package com.example.strangers.controler;
+
+import com.example.strangers.R;
+import com.example.strangers.R.id;
+import com.example.strangers.R.layout;
+import com.example.strangers.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
