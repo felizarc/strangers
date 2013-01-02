@@ -15,6 +15,7 @@ public class Inscription extends Activity {
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.activity_inscription);
+	        setTitle(R.string.title_activity_inscription);
 	        
 	        //Permet d'autoriser la navigation par l'actionBar avec le up
 	        ActionBar actionBar = getActionBar();
@@ -23,7 +24,7 @@ public class Inscription extends Activity {
 	    }
 
 	    
-	    //Méthode permettant de capter les évennements de la bar de menu
+	    //Mï¿½thode permettant de capter les ï¿½vennements de la bar de menu
 	    public boolean onOptionsItemSelected(MenuItem item) {
 	        switch (item.getItemId()) {
 
