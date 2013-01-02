@@ -1,13 +1,12 @@
 package com.example.strangers.controler;
 
-import com.example.strangers.R;
-import com.example.strangers.R.layout;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import com.example.strangers.R;
 
 public class Inscription extends Activity {
 
@@ -29,7 +28,7 @@ public class Inscription extends Activity {
 
 	            case android.R.id.home:
 	            	
-	            	Intent intent = new Intent(this, MainActivity.class);
+	            	Intent intent = new Intent(this, Login.class);
 	            	intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	    	    	startActivity(intent);
 	    	    	

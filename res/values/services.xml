@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="service_base_url">http://ks389666.kimsufi.com/IF26/strangers/</string>
+    
+    <string name="new_user">users/new</string>
+    <string name="delete_user">user</string>
+    
+    <string name="new_account">accounts/new</string>
+    <string name="change_account_password">accounts/</string>
+    <string name="delete_account">accounts/</string>
+    
+    <string name="search_number">find</string>
+</resources>

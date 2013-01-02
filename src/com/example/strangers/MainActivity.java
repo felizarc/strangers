@@ -1,12 +1,12 @@
-package com.example.strangers.controler;
-
-import com.example.strangers.R;
-import com.example.strangers.R.layout;
+package com.example.strangers;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+
+import com.example.strangers.R;
+import com.example.strangers.controler.Login;
 
 public class MainActivity extends Activity {
 

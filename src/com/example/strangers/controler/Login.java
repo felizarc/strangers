@@ -1,16 +1,13 @@
 package com.example.strangers.controler;
 
-import com.example.strangers.R;
-import com.example.strangers.R.id;
-import com.example.strangers.R.layout;
-import com.example.strangers.R.menu;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
+
+import com.example.strangers.R;
 
 public class Login extends Activity {
 

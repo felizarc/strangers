@@ -13,7 +13,7 @@
 	<string name="inscription_phone">téléphone</string>
 	<string name="inscription_submit">Créer</string>
 	<string name="login_menu_newAccount">Nouveau compte</string>
-	<string name="title_activity_inscription">Inscription</string>
-	<string name="title_activity_login">Login</string>
+	<string name="title_activity_inscription">Inscription Strangers</string>
+	<string name="title_activity_login">Login Strangers</string>
 
 </resources>

@@ -23,11 +23,11 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name="com.example.strangers.Inscription"
+			android:name="com.example.strangers.controler.Inscription"
 			android:label="@string/title_activity_inscription" >
 		</activity>
 		<activity
-			android:name="com.example.strangers.Login"
+			android:name="com.example.strangers.controler.Login"
 			android:label="@string/title_activity_login"
 			android:parentActivityName="com.example.strangers.MainActivity"
 			android:windowSoftInputMode="adjustResize|stateVisible" >
