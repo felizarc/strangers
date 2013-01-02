@@ -2,9 +2,10 @@ package com.example.strangers.controler;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.strangers.R;
 
@@ -27,10 +28,10 @@ public class Inscription extends Activity {
 	        switch (item.getItemId()) {
 
 	            case android.R.id.home:
-	            	
-	            	Intent intent = new Intent(this, Login.class);
+	    			NavUtils.navigateUpFromSameTask(this);
+	            	/*Intent intent = new Intent(this, Login.class);
 	            	intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	    	    	startActivity(intent);
+	    	    	startActivity(intent);*/
 	    	    	
 	                return true;
 
@@ -38,5 +39,9 @@ public class Inscription extends Activity {
 	                return super.onOptionsItemSelected(item);
 	        }
 	    }
-
+	    
+	    public void subscribe(View v) {
+	    
+	    }
+	    
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<item android:id="@+id/newMailAccount"
+          android:title="@string/home_new_mail_account" />
+	
+    <item android:id="@+id/unregister"
+          android:title="@string/home_unregister" />
+    
+</menu>

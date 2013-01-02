@@ -4,26 +4,26 @@
     android:layout_height="match_parent" >
 
     <EditText
-        android:id="@+id/connexionEmailInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="98dp"
-        android:ems="10"
-        android:hint="@string/general_username"
-        android:inputType="textEmailAddress" >
+    	android:id="@+id/loginInput"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentTop="true"
+    	android:layout_centerHorizontal="true"
+    	android:layout_marginTop="98dp"
+    	android:ems="10"
+    	android:hint="@string/general_username"
+    	android:inputType="text" >
 
         <requestFocus />
     </EditText>
 
     <EditText
-        android:id="@+id/connexionPasswordInput"
+        android:id="@+id/passwordInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/connexionEmailInput"
-        android:layout_alignRight="@id/connexionEmailInput"
-        android:layout_below="@id/connexionEmailInput"
+        android:layout_alignLeft="@id/loginInput"
+        android:layout_alignRight="@id/loginInput"
+        android:layout_below="@id/loginInput"
         android:layout_marginTop="31dp"
         android:ems="10"
         android:hint="@string/general_password"
@@ -33,13 +33,13 @@
         android:id="@+id/connexionLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/connexionPasswordInput"
-        android:layout_alignRight="@id/connexionPasswordInput"
-        android:layout_below="@id/connexionPasswordInput"
+        android:layout_alignLeft="@id/passwordInput"
+        android:layout_alignRight="@id/passwordInput"
+        android:layout_below="@id/passwordInput"
         android:layout_marginTop="30dp"
         android:gravity="center_vertical|center_horizontal"
         android:text="@string/general_connection"
-        android:onClick="actionConnexion" />
+        android:onClick="login" />
 
 
 </RelativeLayout>

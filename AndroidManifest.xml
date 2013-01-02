@@ -35,6 +35,10 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="com.example.strangers.MainActivity" />
 		</activity>
+		<activity
+			android:name="com.example.strangers.controler.NumberSearch"
+			android:label="@string/title_activity_number_search" >
+		</activity>
 	</application>
 
 </manifest>

@@ -2,21 +2,24 @@ package com.example.strangers.controler;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 import com.example.strangers.R;
+import com.example.strangers.model.User;
+import com.example.strangers.utilities.ObjectAndString;
 
 public class Login extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_login);
-		// Show the Up button in the action bar.
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		setContentView(R.layout.activity_login);		
 	}
 
 	@Override
@@ -29,9 +32,9 @@ public class Login extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case android.R.id.home:
+		/*case android.R.id.home:
 			NavUtils.navigateUpFromSameTask(this);
-			return true;
+			return true;*/
 		case R.id.newAccount:
 			Intent intent = new Intent(this, Inscription.class);
 	    	startActivity(intent);
@@ -39,5 +42,34 @@ public class Login extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	//Action du bouton de connexion
+    public void login(View v) {
+    	
+    	EditText loginInput = (EditText) findViewById(R.id.loginInput);
+		EditText passwordInput = (EditText) findViewById(R.id.passwordInput);
+		
+		//create user
+		String login = loginInput.getText().toString();
+		String password = passwordInput.getText().toString();
+		User user = new User(1, login, password);
+		
+		//TODO Check user existance in database and load accounts
+		
+		//store user
+		SharedPreferences stockPreferences = getSharedPreferences("strangers", Activity.MODE_PRIVATE);
+
+		Editor editor = stockPreferences.edit();
+		editor.putString("registeredUser", ObjectAndString.objectToString(user));
+		editor.apply();
+		
+		//switch to main activity
+		Bundle bundle = new Bundle();
+		bundle.putParcelable("com.example.strangers.model.User", user);
+		Intent intent = new Intent(this, NumberSearch.class);
+		intent.putExtra("currentUserBundle", bundle);
+    	startActivity(intent);
+		
+    }
 
 }
