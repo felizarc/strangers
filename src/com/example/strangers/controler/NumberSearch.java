@@ -48,6 +48,14 @@ public class NumberSearch extends Activity {
 				Intent intent = new Intent(this, Login.class);
 		    	startActivity(intent);
 		    	return true;
+		    	
+			case R.id.newMailAccount:
+				Bundle bundle = new Bundle();
+				bundle.putParcelable("com.example.strangers.model.User", currentUser);
+				Intent intentMail = new Intent(this, Login.class);
+				intentMail.putExtra("currentUserBundle", bundle);
+		    	startActivity(intentMail);
+		    	return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}

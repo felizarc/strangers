@@ -1,5 +1,7 @@
 package com.example.strangers.controler;
 
+import java.util.concurrent.ExecutionException;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -10,9 +12,12 @@ import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.strangers.R;
+import com.example.strangers.model.AuthenticationResponse;
 import com.example.strangers.model.User;
+import com.example.strangers.tasks.TaskNewUser;
 import com.example.strangers.utilities.ObjectAndString;
 
 public class Inscription extends Activity {
@@ -60,23 +65,47 @@ public class Inscription extends Activity {
 			
 			if(password1.equals(password2)){
 				
-				User user = new User(1, login, password1);
 				
-				//TODO create user in database and load accounts
+				//Préparation et appel du thread d'inscription
+				Object params[] = {getApplicationContext(), login, password1};
+		    	
+		    	TaskNewUser taskNewUser = new TaskNewUser(this);
+		    	taskNewUser.execute(params);
+		    	
+		    	AuthenticationResponse authenticationResult = null;
+				try {
+					authenticationResult = taskNewUser.get();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} catch (ExecutionException e) {
+					e.printStackTrace();
+				}
 				
-				//store user
-				SharedPreferences stockPreferences = getSharedPreferences("strangers", Activity.MODE_PRIVATE);
+				if(authenticationResult != null && authenticationResult.getToken().length() > 0) {
+					
+					//TODO get the right id number if it's usefull or delete id for user class
+					User user = new User(1, login, password1);
+										
+					//store user
+					SharedPreferences stockPreferences = getSharedPreferences("strangers", Activity.MODE_PRIVATE);
 
-				Editor editor = stockPreferences.edit();
-				editor.putString("registeredUser", ObjectAndString.objectToString(user));
-				editor.apply();
-				
-				//switch to main activity
-				Bundle bundle = new Bundle();
-				bundle.putParcelable("com.example.strangers.model.User", user);
-				Intent intent = new Intent(this, NumberSearch.class);
-				intent.putExtra("currentUserBundle", bundle);
-		    	startActivity(intent);
+					Editor editor = stockPreferences.edit();
+					editor.putString("registeredUser", ObjectAndString.objectToString(user));
+					editor.apply();
+					
+					//switch to main activity
+					Bundle bundle = new Bundle();
+					bundle.putParcelable("com.example.strangers.model.User", user);
+					Intent intent = new Intent(this, NumberSearch.class);
+					intent.putExtra("currentUserBundle", bundle);
+			    	startActivity(intent);
+				}
+				else {
+					int duration = Toast.LENGTH_SHORT;
+					String text = "Erreur lors de la création du compte";
+					Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
+					toastError.show();
+				}
 			}
 			else {				
 				passwordInput1.setError("Passwords différents !");

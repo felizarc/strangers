@@ -39,6 +39,10 @@
 			android:name="com.example.strangers.controler.NumberSearch"
 			android:label="@string/title_activity_number_search" >
 		</activity>
+		<activity
+			android:name="com.example.strangers.controler.NewMailAccount"
+			android:label="@string/title_activity_new_mail_account" >
+		</activity>
 	</application>
 
 </manifest>

@@ -20,5 +20,12 @@
 	<string name="home_unregister">Déconnexion</string>
 	<string name="home_new_mail_account">Ajouter un mail</string>
 	<string name="verif_password">Répéter mot de passe</string>
-	
+	<string name="title_activity_new_mail_account">Ajouter un mail</string>
+	<string name="add_mail">Ajouter</string>
+	<string name="add_mail_host">serveur host</string>
+	<string name="add_mail_port">port du serveur</string>
+	<string name="add_mail_login">Login de la boite</string>
+	<string name="add_mail_password">Mot de passe</string>
+	<string name="add_mail_description">Description de la boite</string>
+
 </resources>

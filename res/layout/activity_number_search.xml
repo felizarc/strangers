@@ -11,7 +11,8 @@
     	android:layout_alignParentRight="true"
     	android:layout_alignParentTop="true"
     	android:layout_marginTop="39dp"
-    	android:text="@string/search_button" />
+    	android:text="@string/search_button" 
+    	android:onClick="searchPhoneNumber" />
 
     <EditText
     	android:id="@+id/editText1"
