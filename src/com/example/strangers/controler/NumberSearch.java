@@ -20,6 +20,7 @@ public class NumberSearch extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_number_search);
+		setTitle(R.string.title_activity_number_search);
 		
 		Bundle bundle = getIntent().getBundleExtra("currentUserBundle");
 		this.currentUser = bundle.getParcelable("com.example.strangers.model.User");
