@@ -14,7 +14,6 @@ public class User implements Serializable, Parcelable{
 	 * ****** Fields ****** *
 	 * ******************** */
 	
-	private Integer id;
 	private String login;
 	private String password;
 
@@ -23,8 +22,7 @@ public class User implements Serializable, Parcelable{
 	 * ****** Constructor ****** *
 	 * ************************* */
 	
-	public User(Integer id, String login, String password) {
-		this.id = id;
+	public User(String login, String password) {
 		this.login = login;
 		this.password = password;
 	}
@@ -32,10 +30,6 @@ public class User implements Serializable, Parcelable{
 	/* ********************* *
 	 * ****** Getters ****** *
 	 * ********************* */
-	
-	public Integer getId() {
-		return id;
-	}
 	
 	public String getLogin() {
 		return login;
@@ -49,10 +43,6 @@ public class User implements Serializable, Parcelable{
 	/* ********************* *
 	 * ****** Setters ****** *
 	 * ********************* */
-	
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	
 	public void setLogin(String login) {
 		this.login = login;
@@ -74,7 +64,6 @@ public class User implements Serializable, Parcelable{
 
 	@Override
 	public void writeToParcel(Parcel out, int flags) {
-		out.writeInt(this.id);
 		out.writeString(this.login);
 		out.writeString(this.password);
 	}
@@ -92,7 +81,6 @@ public class User implements Serializable, Parcelable{
 
     // example constructor that takes a Parcel and gives you an object populated with it's values
     private User(Parcel in) {
-        this.id = in.readInt();
         this.login = in.readString();
         this.password = in.readString();
         

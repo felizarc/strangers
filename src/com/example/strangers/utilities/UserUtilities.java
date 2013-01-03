@@ -6,21 +6,18 @@ import java.util.List;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.content.Context;
 import android.util.Base64;
 
 import com.example.strangers.R;
-import com.example.strangers.model.AuthenticationResponse;
 
 /**
  * Classe contenant les méthodes pour appeler les services liés aux utilisateurs.
@@ -29,7 +26,7 @@ import com.example.strangers.model.AuthenticationResponse;
  */
 public class UserUtilities {
 	
-	public static AuthenticationResponse connexion(Context context, String login, String password) {
+	public static Integer connexion(Context context, String login, String password) {
 		
 		String baseUrl = context.getString(R.string.service_base_url);
 		//pas de service de connexion pour l'instant
@@ -43,7 +40,7 @@ public class UserUtilities {
         httppost.setHeader("Authorization", "Basic "+Base64.encodeToString(authParams.getBytes(), Base64.NO_WRAP));
 	
         
-        AuthenticationResponse authentication = null;
+        Integer status = null;
         
         try {
             // Add your data
@@ -54,7 +51,10 @@ public class UserUtilities {
 
             // Execute HTTP Post Request
             HttpResponse response = httpclient.execute(httppost);
-                       
+            StatusLine statusLine = response.getStatusLine();
+            status = statusLine.getStatusCode();
+            
+            /* *********
             //get the response as a string
             String jsonString = EntityUtils.toString(response.getEntity());
             
@@ -74,19 +74,19 @@ public class UserUtilities {
 				authentication = new AuthenticationResponse();
 				authentication.setMessage("JSONException");
 			}
+			
+			*/////////////
             
         } catch (ClientProtocolException e) {
-        	authentication = new AuthenticationResponse();
-			authentication.setMessage("ClientProtocolException");
+        	
         } catch (IOException e) {
-        	authentication = new AuthenticationResponse();
-			authentication.setMessage("IOException");
+        	//TODO message error
         }
         
-        return authentication;
+        return status;
 	}
 	
-	public static AuthenticationResponse inscription(Context context, String login, String password) {
+	public static Integer inscription(Context context, String login, String password) {
 			
 		String baseUrl = context.getString(R.string.service_base_url);
 		String registrationService = context.getString(R.string.new_user);
@@ -98,7 +98,7 @@ public class UserUtilities {
         String authParams = login+":"+password;
         httppost.setHeader("Authorization", "Basic "+Base64.encodeToString(authParams.getBytes(), Base64.NO_WRAP));
         
-        AuthenticationResponse authentication = null;
+        Integer status = null;
         
         try {
             // Add your data
@@ -109,36 +109,16 @@ public class UserUtilities {
 
             // Execute HTTP Post Request
             HttpResponse response = httpclient.execute(httppost);
-                       
-            //get the response as a string
-            String jsonString = EntityUtils.toString(response.getEntity());
-            
-            //create the json object
-            JSONObject jsonObjectResponse;
-            
-			try {
-				//construct the json object with the response String
-				jsonObjectResponse = new JSONObject(jsonString);
-				
-				//construct the authentication object with the json object
-				authentication = new AuthenticationResponse(jsonObjectResponse.getString("message"), 
-													jsonObjectResponse.getString("token"), 
-													jsonObjectResponse.getInt("expiration"));
-				
-			} catch (JSONException e) {
-				authentication = new AuthenticationResponse();
-				authentication.setMessage("JSONException");
-			}
+            StatusLine statusLine = response.getStatusLine();
+            status = statusLine.getStatusCode();
             
         } catch (ClientProtocolException e) {
-        	authentication = new AuthenticationResponse();
-			authentication.setMessage("ClientProtocolException");
+        	//TODO error message
         } catch (IOException e) {
-        	authentication = new AuthenticationResponse();
-			authentication.setMessage("IOException");
+        	//TODO error message
         }
         
-        return authentication;
+        return status;
 	}
 
 }

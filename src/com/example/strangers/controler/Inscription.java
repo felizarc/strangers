@@ -2,6 +2,8 @@ package com.example.strangers.controler;
 
 import java.util.concurrent.ExecutionException;
 
+import org.apache.http.HttpStatus;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +17,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.strangers.R;
-import com.example.strangers.model.AuthenticationResponse;
 import com.example.strangers.model.User;
 import com.example.strangers.tasks.TaskNewUser;
 import com.example.strangers.utilities.ObjectAndString;
@@ -72,19 +73,19 @@ public class Inscription extends Activity {
 		    	TaskNewUser taskNewUser = new TaskNewUser(this);
 		    	taskNewUser.execute(params);
 		    	
-		    	AuthenticationResponse authenticationResult = null;
+		    	Integer status = null;
 				try {
-					authenticationResult = taskNewUser.get();
+					status = taskNewUser.get();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				} catch (ExecutionException e) {
 					e.printStackTrace();
 				}
 				
-				if(authenticationResult != null && authenticationResult.getToken().length() > 0) {
+				if(status != null && status > HttpStatus.SC_CREATED) {
 					
 					//TODO get the right id number if it's usefull or delete id for user class
-					User user = new User(1, login, password1);
+					User user = new User(login, password1);
 										
 					//store user
 					SharedPreferences stockPreferences = getSharedPreferences("strangers", Activity.MODE_PRIVATE);

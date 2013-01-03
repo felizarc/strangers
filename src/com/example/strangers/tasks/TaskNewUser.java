@@ -1,14 +1,13 @@
 package com.example.strangers.tasks;
 
-import com.example.strangers.model.AuthenticationResponse;
-import com.example.strangers.utilities.UserUtilities;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-public class TaskNewUser extends AsyncTask<Object, Integer, AuthenticationResponse> {
+import com.example.strangers.utilities.UserUtilities;
+
+public class TaskNewUser extends AsyncTask<Object, Integer, Integer> {
 	
 	ProgressDialog dialog;
 	Activity activity;
@@ -32,24 +31,24 @@ public class TaskNewUser extends AsyncTask<Object, Integer, AuthenticationRespon
 	}
 	
 	@Override
-	protected AuthenticationResponse doInBackground(Object... params) {
+	protected Integer doInBackground(Object... params) {
 		
 		Context taskContext = (Context)params[0];
 		String login = String.valueOf(params[1]);
 		String password = String.valueOf(params[2]);
 
 
-		AuthenticationResponse authenticationResult = UserUtilities.inscription(taskContext, login, password);
+		Integer status = UserUtilities.inscription(taskContext, login, password);
 		
-		return authenticationResult;
+		return status;
 	}
 	
 	@Override
-	protected void onPostExecute(AuthenticationResponse authenticationResult) {
+	protected void onPostExecute(Integer status) {
 		if(dialog!=null)
         {
             dialog.dismiss();
         }
-		super.onPostExecute(authenticationResult);
+		super.onPostExecute(status);
 	}
 }

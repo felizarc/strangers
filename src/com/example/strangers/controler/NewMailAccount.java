@@ -2,6 +2,8 @@ package com.example.strangers.controler;
 
 import java.util.concurrent.ExecutionException;
 
+import org.apache.http.HttpStatus;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -13,14 +15,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.strangers.R;
-import com.example.strangers.model.AddMailBoxResponse;
 import com.example.strangers.model.User;
 import com.example.strangers.tasks.TaskNewAccount;
 
 public class NewMailAccount extends Activity {
-
-	private static final int STATUS_OK = 201;
-	private static final int STATUS_BAD = 422;
 
 	private User currentUser;
 
@@ -67,19 +65,21 @@ public class NewMailAccount extends Activity {
 		Object params[] = {getApplicationContext(), currentUser.getLogin(), 
 							currentUser.getPassword(), host, port, login, password, description};
     	
-    	TaskNewAccount taskNewAccount = new TaskNewAccount(this);
+    	
+    	Integer status = null;
+
+		TaskNewAccount taskNewAccount = new TaskNewAccount(this);
     	taskNewAccount.execute(params);
     	
-    	AddMailBoxResponse addMailBoxResponse = null;
 		try {
-			addMailBoxResponse = taskNewAccount.get();
+			status = taskNewAccount.get();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
 		
-		if(addMailBoxResponse != null && addMailBoxResponse.getStatus() == STATUS_OK) {
+		if(status != null && status == HttpStatus.SC_CREATED) {
 						//switch to main activity
 			Bundle bundle = new Bundle();
 			bundle.putParcelable("com.example.strangers.model.User", currentUser);

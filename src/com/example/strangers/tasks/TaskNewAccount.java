@@ -5,10 +5,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.example.strangers.model.AddMailBoxResponse;
 import com.example.strangers.utilities.MailBoxUtilities;
 
-public class TaskNewAccount extends AsyncTask<Object, Integer, AddMailBoxResponse> {
+public class TaskNewAccount extends AsyncTask<Object, Integer, Integer> {
 	
 	ProgressDialog dialog;
 	Activity activity;
@@ -32,7 +31,7 @@ public class TaskNewAccount extends AsyncTask<Object, Integer, AddMailBoxRespons
 	}
 	
 	@Override
-	protected AddMailBoxResponse doInBackground(Object... params) {
+	protected Integer doInBackground(Object... params) {
 		
 		Context taskContext = (Context)params[0];
 		String currentUserLogin = String.valueOf(params[1]);
@@ -43,19 +42,19 @@ public class TaskNewAccount extends AsyncTask<Object, Integer, AddMailBoxRespons
 		String password = String.valueOf(params[6]);
 		String description = String.valueOf(params[7]);
 
-		AddMailBoxResponse addMailBoxResponse = MailBoxUtilities.addMailBox(taskContext, currentUserLogin, 
+		Integer status = MailBoxUtilities.addMailBox(taskContext, currentUserLogin, 
 																			currentUserPassword, host, 
 																			port, login, password, description);
 		
-		return addMailBoxResponse;
+		return status;
 	}
 	
 	@Override
-	protected void onPostExecute(AddMailBoxResponse addMailBoxResponse) {
+	protected void onPostExecute(Integer status) {
 		if(dialog!=null)
         {
             dialog.dismiss();
         }
-		super.onPostExecute(addMailBoxResponse);
+		super.onPostExecute(status);
 	}
 }

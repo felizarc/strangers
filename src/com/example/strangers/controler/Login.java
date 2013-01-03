@@ -53,7 +53,7 @@ public class Login extends Activity {
 		//create user
 		String login = loginInput.getText().toString();
 		String password = passwordInput.getText().toString();
-		User user = new User(1, login, password);
+		User user = new User(login, password);
 		
 		//TODO Check user existance in database and load accounts
 		
