@@ -29,8 +29,10 @@ public class MainActivity extends Activity {
 		}
 		//envoyer sur la page principale
 		else {
-			
+			Bundle bundle = new Bundle();
+			bundle.putParcelable("com.example.strangers.model.User", registeredUser);
 			Intent intent = new Intent(this, NumberSearch.class);
+			intent.putExtra("currentUserBundle", bundle);
 	    	startActivity(intent);
 		}
 		

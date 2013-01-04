@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.strangers.R;
 import com.example.strangers.model.User;
@@ -52,7 +53,7 @@ public class NumberSearch extends Activity {
 			case R.id.newMailAccount:
 				Bundle bundle = new Bundle();
 				bundle.putParcelable("com.example.strangers.model.User", currentUser);
-				Intent intentMail = new Intent(this, Login.class);
+				Intent intentMail = new Intent(this, NewMailAccount.class);
 				intentMail.putExtra("currentUserBundle", bundle);
 		    	startActivity(intentMail);
 		    	return true;
@@ -60,4 +61,6 @@ public class NumberSearch extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
+    public void searchPhoneNumber(View v) {
+    }
 }

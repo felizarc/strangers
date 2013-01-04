@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -41,11 +40,10 @@ public class Inscription extends Activity {
 	        switch (item.getItemId()) {
 
 	            case android.R.id.home:
-	    			NavUtils.navigateUpFromSameTask(this);
-	            	/*Intent intent = new Intent(this, Login.class);
+	    			//NavUtils.navigateUpFromSameTask(this);
+	            	Intent intent = new Intent(this, Login.class);
 	            	intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	    	    	startActivity(intent);*/
-	    	    	
+	    	    	startActivity(intent);
 	                return true;
 
 	            default:

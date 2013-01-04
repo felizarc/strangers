@@ -8,7 +8,6 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -36,9 +35,12 @@ public class NewMailAccount extends Activity {
 	
 	public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-
             case android.R.id.home:
-    			NavUtils.navigateUpFromSameTask(this);    	    	
+            	Bundle bundle = new Bundle();
+				bundle.putParcelable("com.example.strangers.model.User", currentUser);
+				Intent intent = new Intent(this, NumberSearch.class);
+				intent.putExtra("currentUserBundle", bundle);
+		    	startActivity(intent);  	    	
                 return true;
 
             default:

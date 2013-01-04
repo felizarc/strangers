@@ -6,35 +6,48 @@ public class SearchResponse {
 	 * ****** Fields ****** *
 	 * ******************** */
 	
-	private String responseText;
-	private String reponseAccount;
-	private String mailDate;
+	private String responseMailAccount;
+	private String responseMailExpeditor;
+	private String responseMailDate;
+	private String responseMailContent;
+	private String responseMailShortContent;
 
 	
 	/* ************************* *
 	 * ****** Constructor ****** *
 	 * ************************* */
 	
-	public SearchResponse(String text) {
-		super();
-		this.responseText = text;
+	public SearchResponse(String responseMailAccount, String responseMailExpeditor, String responseMailDate, String responseMailContent, String responseMailShortContent) {
+		this.responseMailAccount = responseMailAccount;
+		this.responseMailExpeditor = responseMailExpeditor;
+		this.responseMailDate = responseMailDate;
+		this.responseMailContent = responseMailContent;
+		this.responseMailShortContent = responseMailShortContent;
 	}
-
+	
 	
 	/* ********************* *
 	 * ****** Getters ****** *
 	 * ********************* */
 	
-	public String getResponseText() {
-		return responseText;
+	public String getResponseMailAccount() {
+		return responseMailAccount;
 	}
-	
-	public String getReponseAccount() {
-		return reponseAccount;
+
+	public String getResponseMailExpeditor() {
+		return responseMailExpeditor;
 	}
-	
-	public String getMailDate() {
-		return mailDate;
+
+	public String getResponseMailDate() {
+		return responseMailDate;
+	}
+
+	public String getResponseMailContent() {
+		return responseMailContent;
+	}
+
+	public String getResponseMailShortContent() {
+		return responseMailShortContent;
 	}
 	
 	
@@ -42,16 +55,24 @@ public class SearchResponse {
 	 * ****** Setters ****** *
 	 * ********************* */
 	
-	public void setResponseText(String responseText) {
-		this.responseText = responseText;
+	public void setResponseMailAccount(String responseMailAccount) {
+		this.responseMailAccount = responseMailAccount;
 	}
 
-	public void setReponseAccount(String reponseAccount) {
-		this.reponseAccount = reponseAccount;
+	public void setResponseMailExpeditor(String responseMailExpeditor) {
+		this.responseMailExpeditor = responseMailExpeditor;
 	}
-	
-	public void setMailDate(String mailDate) {
-		this.mailDate = mailDate;
+
+	public void setResponseMailDate(String responseMailDate) {
+		this.responseMailDate = responseMailDate;
+	}
+
+	public void setResponseMailContent(String responseMailContent) {
+		this.responseMailContent = responseMailContent;
+	}
+
+	public void setResponseMailShortContent(String responseMailShortContent) {
+		this.responseMailShortContent = responseMailShortContent;
 	}
 
 }
