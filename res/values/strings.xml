@@ -27,5 +27,10 @@
 	<string name="add_mail_login">Login de la boite</string>
 	<string name="add_mail_password">Mot de passe</string>
 	<string name="add_mail_description">Description de la boite</string>
+	<string name="numberSearch_menu_delete_user">Supprimer l\'utilisateur</string>
+	<string name="delete_user_message">Voulez vous vraiment supprimer votre compte utilisateur?</string>
+	<string name="delete_user_title">Confirmation</string>
+	<string name="confirm_delete">Supprimer</string>
+	<string name="infirm_delete">Annuler</string>
 
 </resources>

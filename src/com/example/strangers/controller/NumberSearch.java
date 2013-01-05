@@ -1,6 +1,12 @@
 package com.example.strangers.controller;
 
+import java.util.concurrent.ExecutionException;
+
+import org.apache.http.HttpStatus;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -9,9 +15,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.strangers.R;
 import com.example.strangers.model.User;
+import com.example.strangers.tasks.TaskDeleteUser;
+import com.example.strangers.tasks.TaskNewUser;
+import com.example.strangers.utilities.ObjectAndString;
 
 public class NumberSearch extends Activity {
 
@@ -56,6 +66,71 @@ public class NumberSearch extends Activity {
 				Intent intentMail = new Intent(this, NewMailAccount.class);
 				intentMail.putExtra("currentUserBundle", bundle);
 		    	startActivity(intentMail);
+		    	return true;
+		    	
+			case R.id.deleteUser:
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setMessage(R.string.delete_user_message).setTitle(R.string.delete_user_title);
+				
+				builder.setPositiveButton(R.string.confirm_delete, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						Log.v("user", "Suppression");
+						
+						SharedPreferences stockPreferences = getSharedPreferences("strangers", Activity.MODE_PRIVATE);
+						
+						String registeredUserString = stockPreferences.getString("registeredUser", null);
+						User registeredUser = (User) ObjectAndString.stringToObject(registeredUserString);
+						
+						String login = registeredUser.getLogin();
+						String password = registeredUser.getPassword();
+						
+						Object params[] = {getApplicationContext(), login, password};
+				    	
+						//Todo: Check why this is not working
+				    	TaskDeleteUser taskDeleteUser = new TaskDeleteUser(getParent());
+				    	taskDeleteUser.execute(params);
+				    	
+				    	Integer status = null;
+						try {
+							status = taskDeleteUser.get();
+							Log.v("User Delete Status", status.toString());
+							Log.v("User Delete Login", login.toString());
+							Log.v("User Delete Password", password.toString());
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						} catch (ExecutionException e) {
+							e.printStackTrace();
+						}
+						
+						if(status != null && status == HttpStatus.SC_OK) {
+							int duration = Toast.LENGTH_SHORT;
+							String text = "Suppression du compte prise en compte";
+							Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
+							toastError.show();
+							
+							Editor edit = stockPreferences.edit();
+							edit.remove("registeredUser");
+							edit.apply();
+							
+							Intent intent = new Intent(getParent(), Login.class);
+					    	startActivity(intent);						
+						}
+						else {
+							int duration = Toast.LENGTH_SHORT;
+							String text = "Erreur lors de la suppression du compte";
+							Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
+							toastError.show();
+						}
+					}
+				});
+				
+				builder.setNegativeButton(R.string.infirm_delete, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {						
+					}
+				});
+				
+				AlertDialog delete_dialog = builder.create();
+				delete_dialog.show();
 		    	return true;
 		}
 		return super.onOptionsItemSelected(item);
