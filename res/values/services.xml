@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="service_base_url">http://ks389666.kimsufi.com/IF26/strangers/</string>
+    <string name="service_base_url">http://ks389666.kimsufi.com:4567/</string>
     
     <string name="new_user">users/new</string>
     <string name="delete_user">user</string>
