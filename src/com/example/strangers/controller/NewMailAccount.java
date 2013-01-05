@@ -1,4 +1,4 @@
-package com.example.strangers.controler;
+package com.example.strangers.controller;
 
 import java.util.concurrent.ExecutionException;
 
@@ -63,7 +63,7 @@ public class NewMailAccount extends Activity {
 		String password = passwordInput.getText().toString();
 		String description = descriptionInput.getText().toString();
 		
-		//Préparation et appel du thread d'inscription
+		//Prï¿½paration et appel du thread d'inscription
 		Object params[] = {getApplicationContext(), currentUser.getLogin(), 
 							currentUser.getPassword(), host, port, login, password, description};
     	

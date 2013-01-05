@@ -23,11 +23,11 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name="com.example.strangers.controler.Inscription"
+			android:name="com.example.strangers.controller.Inscription"
 			android:label="@string/title_activity_inscription" >
 		</activity>
 		<activity
-			android:name="com.example.strangers.controler.Login"
+			android:name="com.example.strangers.controller.Login"
 			android:label="@string/title_activity_login"
 			android:parentActivityName="com.example.strangers.MainActivity"
 			android:windowSoftInputMode="adjustResize|stateVisible" >
@@ -36,11 +36,11 @@
 				android:value="com.example.strangers.MainActivity" />
 		</activity>
 		<activity
-			android:name="com.example.strangers.controler.NumberSearch"
+			android:name="com.example.strangers.controller.NumberSearch"
 			android:label="@string/title_activity_number_search" >
 		</activity>
 		<activity
-			android:name="com.example.strangers.controler.NewMailAccount"
+			android:name="com.example.strangers.controller.NewMailAccount"
 			android:label="@string/title_activity_new_mail_account" 
 			android:windowSoftInputMode="stateVisible|adjustPan">
 		</activity>

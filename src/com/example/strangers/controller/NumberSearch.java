@@ -1,4 +1,4 @@
-package com.example.strangers.controler;
+package com.example.strangers.controller;
 
 import android.app.Activity;
 import android.content.Intent;

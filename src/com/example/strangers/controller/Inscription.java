@@ -1,4 +1,4 @@
-package com.example.strangers.controler;
+package com.example.strangers.controller;
 
 import java.util.concurrent.ExecutionException;
 
@@ -65,7 +65,7 @@ public class Inscription extends Activity {
 			if(password1.equals(password2)){
 				
 				
-				//Préparation et appel du thread d'inscription
+				//Prï¿½paration et appel du thread d'inscription
 				Object params[] = {getApplicationContext(), login, password1};
 		    	
 		    	TaskNewUser taskNewUser = new TaskNewUser(this);
@@ -101,14 +101,14 @@ public class Inscription extends Activity {
 				}
 				else {
 					int duration = Toast.LENGTH_SHORT;
-					String text = "Erreur lors de la création du compte";
+					String text = "Erreur lors de la crï¿½ation du compte";
 					Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
 					toastError.show();
 				}
 			}
 			else {				
-				passwordInput1.setError("Passwords différents !");
-				passwordInput2.setError("Passwords différents !");
+				passwordInput1.setError("Passwords diffï¿½rents !");
+				passwordInput2.setError("Passwords diffï¿½rents !");
 			}
 
 			

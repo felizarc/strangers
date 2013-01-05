@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.example.strangers.controler.Login;
-import com.example.strangers.controler.NumberSearch;
+import com.example.strangers.controller.Login;
+import com.example.strangers.controller.NumberSearch;
 import com.example.strangers.model.User;
 import com.example.strangers.utilities.ObjectAndString;
 
@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.activity_main_layout);
 		
-		//test si utilisateur déjà enregistré
+		//test si utilisateur dï¿½jï¿½ enregistrï¿½
 		SharedPreferences stockPreferences = getSharedPreferences("strangers", Activity.MODE_PRIVATE);
 		String registeredUserString = stockPreferences.getString("registeredUser", null);
 		User registeredUser = (User) ObjectAndString.stringToObject(registeredUserString);
