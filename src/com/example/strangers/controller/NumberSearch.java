@@ -20,8 +20,6 @@ import android.widget.Toast;
 import com.example.strangers.R;
 import com.example.strangers.model.User;
 import com.example.strangers.tasks.TaskDeleteUser;
-import com.example.strangers.tasks.TaskNewUser;
-import com.example.strangers.utilities.ObjectAndString;
 
 public class NumberSearch extends Activity {
 
@@ -74,59 +72,12 @@ public class NumberSearch extends Activity {
 				
 				builder.setPositiveButton(R.string.confirm_delete, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
-						Log.v("user", "Suppression");
-						
-						SharedPreferences stockPreferences = getSharedPreferences("strangers", Activity.MODE_PRIVATE);
-						
-						String registeredUserString = stockPreferences.getString("registeredUser", null);
-						User registeredUser = (User) ObjectAndString.stringToObject(registeredUserString);
-						
-						String login = registeredUser.getLogin();
-						String password = registeredUser.getPassword();
-						
-						Object params[] = {getApplicationContext(), login, password};
-				    	
-						//Todo: Check why this is not working
-				    	TaskDeleteUser taskDeleteUser = new TaskDeleteUser(getParent());
-				    	taskDeleteUser.execute(params);
-				    	
-				    	Integer status = null;
-						try {
-							status = taskDeleteUser.get();
-							Log.v("User Delete Status", status.toString());
-							Log.v("User Delete Login", login.toString());
-							Log.v("User Delete Password", password.toString());
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						} catch (ExecutionException e) {
-							e.printStackTrace();
-						}
-						
-						if(status != null && status == HttpStatus.SC_OK) {
-							int duration = Toast.LENGTH_SHORT;
-							String text = "Suppression du compte prise en compte";
-							Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
-							toastError.show();
-							
-							Editor edit = stockPreferences.edit();
-							edit.remove("registeredUser");
-							edit.apply();
-							
-							Intent intent = new Intent(getParent(), Login.class);
-					    	startActivity(intent);						
-						}
-						else {
-							int duration = Toast.LENGTH_SHORT;
-							String text = "Erreur lors de la suppression du compte";
-							Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
-							toastError.show();
-						}
+						deleteUser();
 					}
 				});
 				
 				builder.setNegativeButton(R.string.infirm_delete, new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {						
-					}
+					public void onClick(DialogInterface dialog, int id) {}
 				});
 				
 				AlertDialog delete_dialog = builder.create();
@@ -137,5 +88,51 @@ public class NumberSearch extends Activity {
 	}
 
     public void searchPhoneNumber(View v) {
+    }
+    
+    public void deleteUser() {
+    	Log.v("user", "Suppression");
+				
+		String login = currentUser.getLogin();
+		String password = currentUser.getPassword();
+		
+		Object params[] = {getApplicationContext(), login, password};
+    	
+		//Todo: Check why this is not working
+    	TaskDeleteUser taskDeleteUser = new TaskDeleteUser(this);
+    	taskDeleteUser.execute(params);
+    	
+    	Integer status = null;
+		try {
+			status = taskDeleteUser.get();
+			Log.v("User Delete Status", status.toString());
+			Log.v("User Delete Login", login.toString());
+			Log.v("User Delete Password", password.toString());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		
+		if(status != null && status == HttpStatus.SC_OK) {
+			int duration = Toast.LENGTH_SHORT;
+			String text = "Suppression du compte prise en compte";
+			Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
+			toastError.show();
+			
+			SharedPreferences stockPreferences = getSharedPreferences("strangers", Activity.MODE_PRIVATE);
+			Editor edit = stockPreferences.edit();
+			edit.remove("registeredUser");
+			edit.apply();
+			
+			Intent intent = new Intent(this, Login.class);
+	    	startActivity(intent);						
+		}
+		else {
+			int duration = Toast.LENGTH_SHORT;
+			String text = "Erreur lors de la suppression du compte";
+			Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
+			toastError.show();
+		}
     }
 }
