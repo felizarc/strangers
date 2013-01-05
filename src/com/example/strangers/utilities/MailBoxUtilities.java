@@ -56,6 +56,8 @@ public class MailBoxUtilities {
 			//TODO complete exception
         } catch (IOException e) {
 			//TODO complete exception
+        } catch (SecurityException e) {
+        	
         }
         
         return status;

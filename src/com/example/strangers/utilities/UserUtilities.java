@@ -82,6 +82,8 @@ public class UserUtilities {
         	
         } catch (IOException e) {
         	//TODO message error
+        } catch (SecurityException e) {
+        	
         }
         
         return status;
@@ -113,6 +115,8 @@ public class UserUtilities {
         	//TODO error message
         } catch (IOException e) {
         	//TODO error message
+        } catch (SecurityException e) {
+        	
         }
         
         return status;
@@ -140,6 +144,8 @@ public class UserUtilities {
         	//TODO error message
         } catch (IOException e) {
         	//TODO error message
+        } catch (SecurityException e) {
+        	
         }
 		
 		return status;

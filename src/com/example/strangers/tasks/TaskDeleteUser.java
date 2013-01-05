@@ -37,7 +37,6 @@ public class TaskDeleteUser extends AsyncTask<Object, Integer, Integer> {
 		String login = String.valueOf(params[1]);
 		String password = String.valueOf(params[2]);
 
-
 		Integer status = UserUtilities.suppression(taskContext, login, password);
 		
 		return status;

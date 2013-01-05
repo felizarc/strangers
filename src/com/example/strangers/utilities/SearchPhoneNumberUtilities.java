@@ -94,6 +94,8 @@ public class SearchPhoneNumberUtilities {
 			//TODO complete exception
         } catch (IOException e) {
 			//TODO complete exception
+        } catch (SecurityException e) {
+        	
         }
         
         return searchResponseList;

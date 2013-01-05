@@ -105,7 +105,9 @@ public class NumberSearch extends Activity {
     	Integer status = null;
 		try {
 			status = taskDeleteUser.get();
-			Log.v("User Delete Status", status.toString());
+			if(status != null) {
+				Log.v("User Delete Status", status.toString());
+			}
 			Log.v("User Delete Login", login.toString());
 			Log.v("User Delete Password", password.toString());
 		} catch (InterruptedException e) {
