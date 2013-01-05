@@ -39,11 +39,11 @@ public class MailBoxUtilities {
         try {
             // Add your data
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-            nameValuePairs.add(new BasicNameValuePair("host", host));
-            nameValuePairs.add(new BasicNameValuePair("port", port));
-            nameValuePairs.add(new BasicNameValuePair("username", login));
-            nameValuePairs.add(new BasicNameValuePair("password", password));
-            nameValuePairs.add(new BasicNameValuePair("description", description));
+            nameValuePairs.add(new BasicNameValuePair("account[host]", host));
+            //nameValuePairs.add(new BasicNameValuePair("port", port));
+            nameValuePairs.add(new BasicNameValuePair("account[username]", login));
+            nameValuePairs.add(new BasicNameValuePair("account[password]", password));
+            //nameValuePairs.add(new BasicNameValuePair("description", description));
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
             // Execute HTTP Post Request

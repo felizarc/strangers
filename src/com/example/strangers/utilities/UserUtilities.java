@@ -45,8 +45,8 @@ public class UserUtilities {
         try {
             // Add your data
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-            nameValuePairs.add(new BasicNameValuePair("username", login));
-            nameValuePairs.add(new BasicNameValuePair("password", password));
+            nameValuePairs.add(new BasicNameValuePair("user[login]", login));
+            nameValuePairs.add(new BasicNameValuePair("user[password]", password));
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
             // Execute HTTP Post Request
@@ -94,17 +94,13 @@ public class UserUtilities {
 		HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost(baseUrl+registrationService);
         
-        //Add http basic auth
-        String authParams = login+":"+password;
-        httppost.setHeader("Authorization", "Basic "+Base64.encodeToString(authParams.getBytes(), Base64.NO_WRAP));
-        
         Integer status = null;
         
         try {
             // Add your data
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-            nameValuePairs.add(new BasicNameValuePair("username", login));
-            nameValuePairs.add(new BasicNameValuePair("password", password));
+            nameValuePairs.add(new BasicNameValuePair("user[login]", login));
+            nameValuePairs.add(new BasicNameValuePair("user[password]", password));
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
             // Execute HTTP Post Request

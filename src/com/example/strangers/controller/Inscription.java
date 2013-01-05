@@ -80,7 +80,7 @@ public class Inscription extends Activity {
 					e.printStackTrace();
 				}
 				
-				if(status != null && status > HttpStatus.SC_CREATED) {
+				if(status != null && status == HttpStatus.SC_CREATED) {
 					
 					//TODO get the right id number if it's usefull or delete id for user class
 					User user = new User(login, password1);
