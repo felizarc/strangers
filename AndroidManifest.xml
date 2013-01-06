@@ -43,7 +43,7 @@
 		</activity>
 		<activity
 			android:name="com.example.strangers.controller.NewMailAccount"
-			android:label="@string/title_activity_new_mail_account" 
+			android:label="@string/numberSearch_menu_new_mail_account" 
 			android:windowSoftInputMode="stateVisible|adjustPan">
 		</activity>
 	</application>

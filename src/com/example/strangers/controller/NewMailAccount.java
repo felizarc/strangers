@@ -8,6 +8,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -90,6 +91,11 @@ public class NewMailAccount extends Activity {
 	    	startActivity(intent);
 		}
 		else {
+			if(status != null) {
+				Log.e("Mail", status.toString());
+			} else {
+				Log.e("Mail", "Null");
+			}
 			int duration = Toast.LENGTH_SHORT;
 			String text = getApplicationContext().getString(R.string.account_creation_error);
 			Toast toastError = Toast.makeText(getApplicationContext(), text, duration);

@@ -40,7 +40,7 @@ public class MailBoxUtilities {
             // Add your data
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
             nameValuePairs.add(new BasicNameValuePair("account[host]", host));
-            //nameValuePairs.add(new BasicNameValuePair("port", port));
+            nameValuePairs.add(new BasicNameValuePair("account[port]", port));
             nameValuePairs.add(new BasicNameValuePair("account[username]", login));
             nameValuePairs.add(new BasicNameValuePair("account[password]", password));
             //nameValuePairs.add(new BasicNameValuePair("description", description));
