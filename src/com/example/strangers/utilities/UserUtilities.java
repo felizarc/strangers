@@ -11,6 +11,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -137,6 +138,34 @@ public class UserUtilities {
 		
 		try {
             HttpResponse response = httpclient.execute(httpdelete);
+            StatusLine statusLine = response.getStatusLine();
+            status = statusLine.getStatusCode();
+            
+        } catch (ClientProtocolException e) {
+        	//TODO error message
+        } catch (IOException e) {
+        	//TODO error message
+        } catch (SecurityException e) {
+        	
+        }
+		
+		return status;
+	}
+	
+	public static Integer verification(Context context, String login, String password) {
+		String baseUrl = context.getString(R.string.service_base_url);
+		String usercheckService = context.getString(R.string.check_user);
+		
+		HttpClient httpclient = new DefaultHttpClient();
+        HttpGet httpget = new HttpGet(baseUrl+usercheckService);
+        
+        String authParams = login+":"+password;
+        httpget.setHeader("Authorization", "Basic "+Base64.encodeToString(authParams.getBytes(), Base64.NO_WRAP));
+		
+		Integer status = null;
+		
+		try {
+            HttpResponse response = httpclient.execute(httpget);
             StatusLine statusLine = response.getStatusLine();
             status = statusLine.getStatusCode();
             

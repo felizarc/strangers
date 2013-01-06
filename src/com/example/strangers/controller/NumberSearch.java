@@ -98,7 +98,6 @@ public class NumberSearch extends Activity {
 		
 		Object params[] = {getApplicationContext(), login, password};
     	
-		//Todo: Check why this is not working
     	TaskDeleteUser taskDeleteUser = new TaskDeleteUser(this);
     	taskDeleteUser.execute(params);
     	

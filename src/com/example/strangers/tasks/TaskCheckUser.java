@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.example.strangers.R;
 import com.example.strangers.utilities.UserUtilities;
 
 public class TaskCheckUser extends AsyncTask<Object, Integer, Integer> {
@@ -19,7 +20,7 @@ public class TaskCheckUser extends AsyncTask<Object, Integer, Integer> {
 	}
 	
 	protected void onPreExecute() {		
-		this.dialog.setMessage("Ajout de la boite mail.");
+		this.dialog.setMessage(activity.getApplicationContext().getString(R.string.user_check_process));
 		this.dialog.show();
         super.onPreExecute();
 	}
@@ -35,10 +36,9 @@ public class TaskCheckUser extends AsyncTask<Object, Integer, Integer> {
 		
 		Context taskContext = (Context)params[0];
 		String currentUserLogin = String.valueOf(params[1]);
-		String currentUserPassword = String.valueOf(params[2]);
-		
+		String currentUserPassword = String.valueOf(params[2]);		
 
-		Integer status = UserUtilities.connexion(taskContext, currentUserLogin, currentUserPassword);
+		Integer status = UserUtilities.verification(taskContext, currentUserLogin, currentUserPassword);
 		return status;
 	}
 	

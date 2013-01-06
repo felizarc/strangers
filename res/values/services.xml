@@ -10,4 +10,5 @@
     <string name="delete_account">accounts/</string>
     
     <string name="search_number">find</string>
+    <string name="check_user">ping</string>
 </resources>

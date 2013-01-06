@@ -1,5 +1,9 @@
 package com.example.strangers.controller;
 
+import java.util.concurrent.ExecutionException;
+
+import org.apache.http.HttpStatus;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,9 +13,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.strangers.R;
 import com.example.strangers.model.User;
+import com.example.strangers.tasks.TaskCheckUser;
 import com.example.strangers.utilities.ObjectAndString;
 
 public class Login extends Activity {
@@ -50,27 +56,51 @@ public class Login extends Activity {
     	EditText loginInput = (EditText) findViewById(R.id.loginInput);
 		EditText passwordInput = (EditText) findViewById(R.id.passwordInput);
 		
-		//create user
 		String login = loginInput.getText().toString();
-		String password = passwordInput.getText().toString();
-		User user = new User(login, password);
+		String password = passwordInput.getText().toString();		
 		
-		//TODO Check user existance in database and load accounts
+		Object params[] = {getApplicationContext(), login, password};
+    	
+    	TaskCheckUser taskCheckUser = new TaskCheckUser(this);
+    	taskCheckUser.execute(params);
+    	
+    	Integer status = null;
+		try {
+			status = taskCheckUser.get();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
 		
-		//store user
-		SharedPreferences stockPreferences = getSharedPreferences("strangers", Activity.MODE_PRIVATE);
+		if(status != null && status == HttpStatus.SC_OK) {
+			//create user
+			User user = new User(login, password);
+			
+			//store user
+			SharedPreferences stockPreferences = getSharedPreferences("strangers", Activity.MODE_PRIVATE);
 
-		Editor editor = stockPreferences.edit();
-		editor.putString("registeredUser", ObjectAndString.objectToString(user));
-		editor.apply();
-		
-		//switch to main activity
-		Bundle bundle = new Bundle();
-		bundle.putParcelable("com.example.strangers.model.User", user);
-		Intent intent = new Intent(this, NumberSearch.class);
-		intent.putExtra("currentUserBundle", bundle);
-    	startActivity(intent);
-		
+			Editor editor = stockPreferences.edit();
+			editor.putString("registeredUser", ObjectAndString.objectToString(user));
+			editor.apply();
+			
+			//switch to main activity
+			Bundle bundle = new Bundle();
+			bundle.putParcelable("com.example.strangers.model.User", user);
+			Intent intent = new Intent(this, NumberSearch.class);
+			intent.putExtra("currentUserBundle", bundle);
+	    	startActivity(intent);
+		} else if(status != null && status == HttpStatus.SC_UNAUTHORIZED) {
+			int duration = Toast.LENGTH_SHORT;
+			String text = getApplicationContext().getString(R.string.user_login_denied);
+			Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
+			toastError.show();
+		} else {
+			int duration = Toast.LENGTH_SHORT;
+			String text = getApplicationContext().getString(R.string.user_check_error);
+			Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
+			toastError.show();
+		}
     }
 
 }

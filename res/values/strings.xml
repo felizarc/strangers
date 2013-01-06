@@ -40,5 +40,8 @@
 	<string name="user_deletion_denied">Suppression de l\'utilisateur refusée</string>
 	<string name="account_creation_error">Erreur lors de l\'ajout du compte mail</string>
 	<string name="account_creation_process">Ajout du compte email</string>
+	<string name="user_check_process">Vérification de l\'utilisateur</string>
+	<string name="user_check_error">Erreur lors de la vérification de l\'utilisateur</string>
+	<string name="user_login_denied">Nom d\'utilisateur ou mot de passe incorrect</string>
 
 </resources>
