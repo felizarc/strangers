@@ -32,5 +32,13 @@
 	<string name="delete_user_title">Confirmation</string>
 	<string name="confirm_delete">Supprimer</string>
 	<string name="infirm_delete">Annuler</string>
+	<string name="different_passwords">Les mots de passes doivent être identiques</string>
+	<string name="user_creation_error">Erreur lors de la création du compte</string>
+	<string name="user_creation_process">Création du compte utilisateur...</string>
+	<string name="user_deletion_process">Suppression du compte...</string>
+	<string name="user_deletion_accepted">Suppression de l\'utilisateur prise en compte</string>
+	<string name="user_deletion_denied">Suppression de l\'utilisateur refusée</string>
+	<string name="account_creation_error">Erreur lors de l\'ajout du compte mail</string>
+	<string name="account_creation_process">Ajout du compte email</string>
 
 </resources>

@@ -113,7 +113,7 @@ public class NumberSearch extends Activity {
 		
 		if(status != null && status == HttpStatus.SC_OK) {
 			int duration = Toast.LENGTH_SHORT;
-			String text = "Suppression du compte prise en compte";
+			String text = getApplicationContext().getString(R.string.user_deletion_accepted);
 			Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
 			toastError.show();
 			
@@ -127,7 +127,7 @@ public class NumberSearch extends Activity {
 		}
 		else {
 			int duration = Toast.LENGTH_SHORT;
-			String text = "Erreur lors de la suppression du compte";
+			String text = getApplicationContext().getString(R.string.user_deletion_denied);
 			Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
 			toastError.show();
 		}

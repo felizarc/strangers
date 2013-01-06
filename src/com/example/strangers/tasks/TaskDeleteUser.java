@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.example.strangers.R;
 import com.example.strangers.utilities.UserUtilities;
 
 public class TaskDeleteUser extends AsyncTask<Object, Integer, Integer> {
@@ -19,7 +20,7 @@ public class TaskDeleteUser extends AsyncTask<Object, Integer, Integer> {
 	}
 	
 	protected void onPreExecute() {		
-		this.dialog.setMessage("Supression du compte.");
+		this.dialog.setMessage(activity.getApplicationContext().getString(R.string.user_deletion_process));
 		this.dialog.show();
         super.onPreExecute();
 	}

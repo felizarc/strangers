@@ -91,7 +91,7 @@ public class NewMailAccount extends Activity {
 		}
 		else {
 			int duration = Toast.LENGTH_SHORT;
-			String text = "Erreur lors de l'ajout de la boite mail.";
+			String text = getApplicationContext().getString(R.string.account_creation_error);
 			Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
 			toastError.show();
 		}

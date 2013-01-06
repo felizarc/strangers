@@ -101,14 +101,14 @@ public class Inscription extends Activity {
 				}
 				else {
 					int duration = Toast.LENGTH_SHORT;
-					String text = "Erreur lors de la cr�ation du compte";
-					Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
+					Toast toastError = Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.user_creation_error), duration);
 					toastError.show();
 				}
 			}
 			else {				
-				passwordInput1.setError("Passwords diff�rents !");
-				passwordInput2.setError("Passwords diff�rents !");
+				passwordInput1.setError(getApplicationContext().getString(R.string.different_passwords));
+				passwordInput2.setError(getApplicationContext().getString(R.string.different_passwords));
+			
 			}
 
 			
