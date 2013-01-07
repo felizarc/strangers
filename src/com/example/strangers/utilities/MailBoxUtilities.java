@@ -26,7 +26,7 @@ public class MailBoxUtilities {
 		
 		Integer status = null;
 		
-		String baseUrl = context.getString(R.string.service_base_url);
+		String baseUrl = context.getString(R.string.service_base_url_https);
 		String registrationService = context.getString(R.string.new_account);
 		
 		HttpClient httpclient = new DefaultHttpClient();

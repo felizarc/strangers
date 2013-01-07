@@ -18,6 +18,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import android.content.Context;
 import android.util.Base64;
+import android.util.Log;
 
 import com.example.strangers.R;
 
@@ -30,7 +31,7 @@ public class UserUtilities {
 	
 	public static Integer connexion(Context context, String login, String password) {
 		
-		String baseUrl = context.getString(R.string.service_base_url);
+		String baseUrl = context.getString(R.string.service_base_url_https);
 		//pas de service de connexion pour l'instant
 		//String authenticationService = context.getString(R.string.services_authentication);
 		
@@ -92,10 +93,12 @@ public class UserUtilities {
 	
 	public static Integer inscription(Context context, String login, String password) {
 			
-		String baseUrl = context.getString(R.string.service_base_url);
-		String registrationService = context.getString(R.string.new_user);
+		String baseUrl = context.getString(R.string.service_base_url_https);
+		String registrationService = context.getString(R.string.new_user);		
 		
-		HttpClient httpclient = new DefaultHttpClient();
+		HttpClient httpClient = MySSLSocketFactory.getNewHttpClient();
+		
+		//HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost(baseUrl+registrationService);
         
         Integer status = null;
@@ -108,13 +111,14 @@ public class UserUtilities {
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
             // Execute HTTP Post Request
-            HttpResponse response = httpclient.execute(httppost);
+            HttpResponse response = httpClient.execute(httppost);
             StatusLine statusLine = response.getStatusLine();
             status = statusLine.getStatusCode();
             
         } catch (ClientProtocolException e) {
         	//TODO error message
         } catch (IOException e) {
+        	Log.v("test", e.toString());
         	//TODO error message
         } catch (SecurityException e) {
         	
@@ -124,8 +128,9 @@ public class UserUtilities {
 	}
 	
 	public static Integer suppression(Context context, String login, String password) {
+
 		
-		String baseUrl = context.getString(R.string.service_base_url);
+		String baseUrl = context.getString(R.string.service_base_url_https);
 		String userdeletionService = context.getString(R.string.delete_user);
 		
 		HttpClient httpclient = new DefaultHttpClient();
@@ -153,7 +158,7 @@ public class UserUtilities {
 	}
 	
 	public static Integer verification(Context context, String login, String password) {
-		String baseUrl = context.getString(R.string.service_base_url);
+		String baseUrl = context.getString(R.string.service_base_url_https);
 		String usercheckService = context.getString(R.string.check_user);
 		
 		HttpClient httpclient = new DefaultHttpClient();

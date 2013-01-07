@@ -30,7 +30,7 @@ public class SearchPhoneNumberUtilities {
 		
 		Integer status = null;
 		
-		String baseUrl = context.getString(R.string.service_base_url);
+		String baseUrl = context.getString(R.string.service_base_url_https);
 		String registrationService = context.getString(R.string.search_number);
 		
 		HttpClient httpclient = new DefaultHttpClient();
