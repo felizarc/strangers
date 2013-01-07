@@ -8,9 +8,11 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -104,5 +106,14 @@ public class NewMailAccount extends Activity {
 
     }
 
-
+    public void changePasswordInputType(View checkbox) {
+    	CheckBox show_password_checkbox = (CheckBox) checkbox;
+    	EditText passwordInput = (EditText) findViewById(R.id.add_mail_password_input);
+    	
+    	if(show_password_checkbox.isChecked()) {
+    		passwordInput.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+    	} else {
+    		passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+    	}
+    }
 }

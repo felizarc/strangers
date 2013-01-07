@@ -5,15 +5,15 @@
 	tools:context=".NewMailAccount" >
 
     <EditText
-    	android:id="@+id/add_mail_password_input"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:layout_alignLeft="@+id/add_mail_login_input"
-    	android:layout_below="@+id/add_mail_login_input"
-    	android:layout_marginTop="17dp"
-    	android:ems="10"
-    	android:hint="@string/add_mail_password"
-    	android:inputType="textVisiblePassword" />
+        android:id="@+id/add_mail_password_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/add_mail_login_input"
+        android:layout_below="@+id/add_mail_login_input"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:hint="@string/add_mail_password"
+        android:inputType="textPassword" />
     	
     <Button
     	android:id="@+id/add_mail_button"
@@ -26,48 +26,57 @@
     	android:onClick="addMailAccount" />
 
     <EditText
-    	android:id="@+id/add_mail_port_input"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:layout_below="@+id/add_mail_host_input"
-    	android:layout_centerHorizontal="true"
-    	android:layout_marginTop="18dp"
-    	android:ems="10"
-    	android:hint="@string/add_mail_port"
-    	android:inputType="number" />
+        android:id="@+id/add_mail_host_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/add_mail_port_input"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:hint="@string/add_mail_host" />
 
     <EditText
-    	android:id="@+id/add_mail_host_input"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:layout_alignParentTop="true"
-    	android:layout_centerHorizontal="true"
-    	android:layout_marginTop="40dp"
-    	android:ems="10"
-    	android:hint="@string/add_mail_host" >
-    	
-    	<requestFocus />
+        android:id="@+id/add_mail_port_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/add_mail_login_input"
+        android:layout_below="@+id/add_mail_host_input"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/add_mail_port"
+        android:inputType="number" >
+
+        <requestFocus />
     </EditText>
 
     <EditText
-    	android:id="@+id/add_mail_login_input"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:layout_below="@+id/add_mail_port_input"
-    	android:layout_centerHorizontal="true"
-    	android:layout_marginTop="25dp"
-    	android:ems="10"
-    	android:hint="@string/add_mail_login" />
+        android:id="@+id/add_mail_login_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_mail_port_input"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/add_mail_login" />
+
+    <CheckBox
+        android:id="@+id/add_mail_show_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_mail_password_input"
+        android:layout_centerHorizontal="true"
+        android:text="@string/add_mail_show_password"
+        android:onClick="changePasswordInputType" />
 
     <EditText
-    	android:id="@+id/add_mail_description_input"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:layout_alignLeft="@+id/add_mail_password_input"
-    	android:layout_below="@+id/add_mail_password_input"
-    	android:layout_marginTop="24dp"
-    	android:ems="10"
-    	android:hint="@string/add_mail_description"
-    	android:inputType="textMultiLine" />
+        android:id="@+id/add_mail_description_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/add_mail_show_password"
+        android:layout_below="@+id/add_mail_show_password"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:hint="@string/add_mail_description"
+        android:inputType="textMultiLine" />
 
 </RelativeLayout>

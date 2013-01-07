@@ -43,5 +43,6 @@
 	<string name="user_check_process">Vérification de l\'utilisateur</string>
 	<string name="user_check_error">Erreur lors de la vérification de l\'utilisateur</string>
 	<string name="user_login_denied">Nom d\'utilisateur ou mot de passe incorrect</string>
+	<string name="add_mail_show_password">Afficher le mot de passe</string>
 
 </resources>
