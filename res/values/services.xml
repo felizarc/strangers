@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="service_base_url_http">http://ks389666.kimsufi.com:4567/</string>
-    <string name="service_base_url_https">https://ks389666.kimsufi.com:4567/strangers/</string>
+    <string name="service_base_url_https">https://ks389666.kimsufi.com/strangers/</string>
     
     <string name="new_user">users/new</string>
     <string name="delete_user">user</string>
