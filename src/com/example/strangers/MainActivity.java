@@ -22,6 +22,10 @@ public class MainActivity extends Activity {
 		String registeredUserString = stockPreferences.getString("registeredUser", null);
 		User registeredUser = (User) ObjectAndString.stringToObject(registeredUserString);
 		
+		//HashMap<String, ArrayList<String>> smsList = SmsUtilities.getSMS(getApplicationContext());
+		//ArrayList<ArrayList<String>> smsList = SmsUtilities.getSMS(getApplicationContext());
+		//Log.v("List sms", smsList.toString());
+		
 		//envoyer sur la page de login
 		if(registeredUser == null) {
 			Intent intent = new Intent(this, Login.class);

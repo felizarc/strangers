@@ -11,7 +11,6 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import android.content.Context;
@@ -29,7 +28,8 @@ public class MailBoxUtilities {
 		String baseUrl = context.getString(R.string.service_base_url_https);
 		String registrationService = context.getString(R.string.new_account);
 		
-		HttpClient httpclient = new DefaultHttpClient();
+		HttpClient httpClient = MySSLSocketFactory.getNewHttpClient();
+		//HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost(baseUrl+registrationService);
         
         //Add http basic auth
@@ -47,7 +47,7 @@ public class MailBoxUtilities {
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
             // Execute HTTP Post Request
-            HttpResponse response = httpclient.execute(httppost);
+            HttpResponse response = httpClient.execute(httppost);
                      
             StatusLine statusLine = response.getStatusLine();
             status = statusLine.getStatusCode();
@@ -57,7 +57,7 @@ public class MailBoxUtilities {
         } catch (IOException e) {
 			//TODO complete exception
         } catch (SecurityException e) {
-        	
+        	//TODO complete Exception
         }
         
         return status;
