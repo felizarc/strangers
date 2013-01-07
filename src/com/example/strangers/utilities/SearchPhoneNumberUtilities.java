@@ -12,9 +12,14 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.Context;
 import android.util.Base64;
+import android.util.Log;
 
 import com.example.strangers.R;
 import com.example.strangers.model.SearchResponse;
@@ -22,9 +27,7 @@ import com.example.strangers.model.SearchResponse;
 public class SearchPhoneNumberUtilities {
 
 	public static ArrayList<SearchResponse> addMailBox(Context context, String currentUserLogin, String currentUserPassword, String phoneNumber) {
-		
-		Integer status = null;
-		
+				
 		String baseUrl = context.getString(R.string.service_base_url_https);
 		String registrationService = context.getString(R.string.search_number);
 		
@@ -47,21 +50,35 @@ public class SearchPhoneNumberUtilities {
             // Execute HTTP Post Request
             HttpResponse response = httpClient.execute(httppost);
                      
-            StatusLine statusLine = response.getStatusLine();
-            status = statusLine.getStatusCode();
             
-            /* **********
+            
             //get the response as a string
             String jsonString = EntityUtils.toString(response.getEntity());
             
-            //create the json object
-            JSONObject jsonObjectResponse;
+			
             
-			try {
-				//construct the json object with the response String
+            try {
+                //create the json object
+                JSONObject jsonObjectResponse;
 				jsonObjectResponse = new JSONObject(jsonString);
+				Log.v("json", jsonObjectResponse.toString());
 				
-				JSONArray jsonArrayListPhoneResponse = jsonObjectResponse.getJSONArray("searchResponseList");
+				SearchResponse searchResponse = new SearchResponse(jsonObjectResponse.getString("before"),
+																	jsonObjectResponse.getString("number"),
+																	jsonObjectResponse.getString("after"),
+																	jsonObjectResponse.getString("from"),
+																	jsonObjectResponse.getString("date"),
+																	jsonObjectResponse.getString("account"),
+																	jsonObjectResponse.getString("status"));
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			/*try {
+				//construct the json object with the response String
+				
 
 				//fill the list of messages
 				for(int i=0; i<jsonArrayListPhoneResponse.length(); i++) {

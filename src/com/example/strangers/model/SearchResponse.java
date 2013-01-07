@@ -6,73 +6,95 @@ public class SearchResponse {
 	 * ****** Fields ****** *
 	 * ******************** */
 	
-	private String responseMailAccount;
-	private String responseMailExpeditor;
-	private String responseMailDate;
-	private String responseMailContent;
-	private String responseMailShortContent;
+	private String before;
+	private String number;
+	private String after;
+	private String from;
+	private String date;
+	private String account;
+	private String status;
 
 	
 	/* ************************* *
 	 * ****** Constructor ****** *
 	 * ************************* */
-	
-	public SearchResponse(String responseMailAccount, String responseMailExpeditor, String responseMailDate, String responseMailContent, String responseMailShortContent) {
-		this.responseMailAccount = responseMailAccount;
-		this.responseMailExpeditor = responseMailExpeditor;
-		this.responseMailDate = responseMailDate;
-		this.responseMailContent = responseMailContent;
-		this.responseMailShortContent = responseMailShortContent;
+		
+	public SearchResponse(String before, String number, String after,
+							String from, String date, String account, String status) {
+
+		this.before = before;
+		this.number = number;
+		this.after = after;
+		this.from = from;
+		this.date = date;
+		this.account = account;
+		this.status = status;
 	}
-	
+
 	
 	/* ********************* *
 	 * ****** Getters ****** *
 	 * ********************* */
 	
-	public String getResponseMailAccount() {
-		return responseMailAccount;
+	public String getBefore() {
+		return before;
 	}
 
-	public String getResponseMailExpeditor() {
-		return responseMailExpeditor;
+	public String getNumber() {
+		return number;
 	}
 
-	public String getResponseMailDate() {
-		return responseMailDate;
+	public String getAfter() {
+		return after;
 	}
 
-	public String getResponseMailContent() {
-		return responseMailContent;
+	public String getFrom() {
+		return from;
 	}
 
-	public String getResponseMailShortContent() {
-		return responseMailShortContent;
+	public String getDate() {
+		return date;
 	}
-	
+
+	public String getAccount() {
+		return account;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
 	
 	/* ********************* *
 	 * ****** Setters ****** *
 	 * ********************* */
 	
-	public void setResponseMailAccount(String responseMailAccount) {
-		this.responseMailAccount = responseMailAccount;
+	public void setBefore(String before) {
+		this.before = before;
 	}
 
-	public void setResponseMailExpeditor(String responseMailExpeditor) {
-		this.responseMailExpeditor = responseMailExpeditor;
+	public void setNumber(String number) {
+		this.number = number;
 	}
 
-	public void setResponseMailDate(String responseMailDate) {
-		this.responseMailDate = responseMailDate;
+	public void setAfter(String after) {
+		this.after = after;
 	}
 
-	public void setResponseMailContent(String responseMailContent) {
-		this.responseMailContent = responseMailContent;
+	public void setFrom(String from) {
+		this.from = from;
 	}
 
-	public void setResponseMailShortContent(String responseMailShortContent) {
-		this.responseMailShortContent = responseMailShortContent;
+	public void setDate(String date) {
+		this.date = date;
 	}
 
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}	
+	
 }
