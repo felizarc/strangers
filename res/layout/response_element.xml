@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical" >
+
+    <TextView
+    	android:id="@+id/responseDate"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentRight="true"
+    	android:layout_alignParentTop="true"
+    	android:text="Medium Text"
+    	android:textAppearance="?android:attr/textAppearanceMedium"
+    	android:textColor="#000" />
+
+    <TextView
+    	android:id="@+id/responseAccount"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentLeft="true"
+    	android:layout_alignParentTop="true"
+    	android:text="Large Text"
+    	android:textAppearance="?android:attr/textAppearanceLarge"
+    	android:textColor="#000" />
+
+    <TextView
+    	android:id="@+id/responseFrom"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentLeft="true"
+    	android:layout_alignParentRight="true"
+    	android:layout_below="@+id/responseDate"
+    	android:text="Medium Text"
+    	android:textAppearance="?android:attr/textAppearanceMedium"
+    	android:textColor="#000" />
+
+    <TextView
+    	android:id="@+id/responseBefore"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentLeft="true"
+    	android:layout_alignParentRight="true"
+    	android:layout_below="@+id/responseFrom"
+    	android:text="TextView"
+    	android:textColor="#000" />
+
+    <TextView
+    	android:id="@+id/responseNumber"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentLeft="true"
+    	android:layout_alignParentRight="true"
+    	android:layout_below="@+id/responseBefore"
+    	android:text="Medium Text"
+    	android:textAppearance="?android:attr/textAppearanceMedium"
+    	android:textColor="#000" />
+
+    <TextView
+    	android:id="@+id/responseAfter"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentLeft="true"
+    	android:layout_alignParentRight="true"
+    	android:layout_below="@+id/responseNumber"
+    	android:text="TextView"
+    	android:textColor="#000" />
+	
+</RelativeLayout>

@@ -17,15 +17,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.strangers.R;
 import com.example.strangers.model.SearchResponse;
 import com.example.strangers.model.User;
-import com.example.strangers.tasks.TaskCheckUser;
 import com.example.strangers.tasks.TaskDeleteUser;
 import com.example.strangers.tasks.TaskSearchPhoneNumber;
-import com.example.strangers.utilities.ObjectAndString;
+import com.example.strangers.utilities.ResponseAdapter;
 
 public class NumberSearch extends Activity {
 
@@ -111,6 +111,16 @@ public class NumberSearch extends Activity {
 			e.printStackTrace();
 		}
 		
+		
+		if(searchPhoneNumberResponseList != null && searchPhoneNumberResponseList.size() > 0) {
+    		
+	    	ListView listMessagesView = (ListView) findViewById(R.id.searchResults);
+
+	    	//Remplissage de la liste par un adapter
+	    	ResponseAdapter adapter = new ResponseAdapter(getApplicationContext(), searchPhoneNumberResponseList);
+	    	listMessagesView.setAdapter(adapter);
+    	}
+
 		/*if(status != null && status == HttpStatus.SC_OK) {
 			//create user
 			User user = new User(login, password);

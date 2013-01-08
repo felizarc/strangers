@@ -71,6 +71,7 @@ public class SearchPhoneNumberUtilities {
 																	jsonObjectResponse.getString("account"),
 																	jsonObjectResponse.getString("status"));
 				
+				searchResponseList.add(searchResponse);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
