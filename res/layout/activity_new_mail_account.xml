@@ -33,7 +33,10 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="17dp"
         android:ems="10"
-        android:hint="@string/add_mail_host" />
+        android:hint="@string/add_mail_host" >
+        
+        <requestFocus />
+    </EditText>
 
     <EditText
         android:id="@+id/add_mail_port_input"
@@ -44,10 +47,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/add_mail_port"
-        android:inputType="number" >
-
-        <requestFocus />
-    </EditText>
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/add_mail_login_input"

@@ -23,5 +23,11 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:padding">16dp</item>
 	</style>
+	
+	<style name="dividedListStyle" parent="@android:style/Widget.ListView">
+    	<item name="android:cacheColorHint">@android:color/transparent</item>
+    	<item name="android:divider">@drawable/dividershape</item>
+    	<item name="android:dividerHeight">1dp</item>
+	</style>
 
 </resources>

@@ -2,7 +2,9 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".NumberSearch" >
+	tools:context=".NumberSearch" 
+	style="@style/dividedListStyle"
+	>
 
     <Button
     	android:id="@+id/searchButton"
