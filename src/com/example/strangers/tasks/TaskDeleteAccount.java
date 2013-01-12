@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.strangers.R;
+import com.example.strangers.controller.NumberSearch;
 import com.example.strangers.utilities.MailBoxUtilities;
 
 public class TaskDeleteAccount extends AsyncTask<Object, Integer, Integer> {
@@ -46,6 +47,9 @@ public class TaskDeleteAccount extends AsyncTask<Object, Integer, Integer> {
 	
 	@Override
 	protected void onPostExecute(Integer status) {
+		NumberSearch number = (NumberSearch) activity;
+		number.afterAccountDeletion(status);
+		
 		if(dialog!=null)
         {
             dialog.dismiss();

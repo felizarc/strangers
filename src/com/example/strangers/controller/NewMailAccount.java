@@ -1,7 +1,5 @@
 package com.example.strangers.controller;
 
-import java.util.concurrent.ExecutionException;
-
 import org.apache.http.HttpStatus;
 
 import android.app.ActionBar;
@@ -69,28 +67,19 @@ public class NewMailAccount extends Activity {
 		//Pr�paration et appel du thread d'inscription
 		Object params[] = {getApplicationContext(), currentUser.getLogin(), 
 							currentUser.getPassword(), host, port, login, password, description};
-    	
-    	
-    	Integer status = null;
 
 		TaskNewAccount taskNewAccount = new TaskNewAccount(this);
     	taskNewAccount.execute(params);
-    	
-		try {
-			status = taskNewAccount.get();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-		
-		if(status != null && status == HttpStatus.SC_CREATED) {
-						//switch to main activity
+    }
+    
+    public void afterAccountCreation(Integer status) {
+    	if(status != null && status == HttpStatus.SC_CREATED) {
+			//switch to main activity
 			Bundle bundle = new Bundle();
 			bundle.putParcelable("com.example.strangers.model.User", currentUser);
 			Intent intent = new Intent(this, NumberSearch.class);
 			intent.putExtra("currentUserBundle", bundle);
-	    	startActivity(intent);
+			startActivity(intent);
 		}
 		else {
 			if(status != null) {
@@ -103,7 +92,6 @@ public class NewMailAccount extends Activity {
 			Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
 			toastError.show();
 		}
-
     }
 
     public void changePasswordInputType(View checkbox) {

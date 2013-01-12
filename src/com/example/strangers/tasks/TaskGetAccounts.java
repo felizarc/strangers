@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.strangers.R;
+import com.example.strangers.controller.NumberSearch;
 import com.example.strangers.model.AccountResponse;
 import com.example.strangers.utilities.MailBoxUtilities;
 
@@ -47,6 +48,9 @@ public class TaskGetAccounts extends AsyncTask<Object, Integer, ArrayList<Accoun
 	
 	@Override
 	protected void onPostExecute(ArrayList<AccountResponse> listResponse) {
+		NumberSearch number = (NumberSearch) activity;
+		number.afterUserAccountsList(listResponse);
+		
 		if(dialog!=null)
         {
             dialog.dismiss();

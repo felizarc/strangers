@@ -1,7 +1,5 @@
 package com.example.strangers.controller;
 
-import java.util.concurrent.ExecutionException;
-
 import org.apache.http.HttpStatus;
 
 import android.app.Activity;
@@ -62,18 +60,11 @@ public class Login extends Activity {
 		Object params[] = {getApplicationContext(), login, password};
     	
     	TaskCheckUser taskCheckUser = new TaskCheckUser(this);
-    	taskCheckUser.execute(params);
-    	
-    	Integer status = null;
-		try {
-			status = taskCheckUser.get();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-		
-		if(status != null && status == HttpStatus.SC_OK) {
+    	taskCheckUser.execute(params);		
+    }
+    
+    public void afterLogin(Integer status, String login, String password) {
+    	if(status != null && status == HttpStatus.SC_OK) {
 			//create user
 			User user = new User(login, password);
 			

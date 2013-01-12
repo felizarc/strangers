@@ -6,9 +6,11 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.strangers.R;
+import com.example.strangers.controller.Inscription;
+import com.example.strangers.controller.Login;
 import com.example.strangers.utilities.UserUtilities;
 
-public class TaskNewUser extends AsyncTask<Object, Integer, Integer> {
+public class TaskNewUser extends AsyncTask<Object, Integer, Object[]> {
 	
 	ProgressDialog dialog;
 	Activity activity;
@@ -32,7 +34,7 @@ public class TaskNewUser extends AsyncTask<Object, Integer, Integer> {
 	}
 	
 	@Override
-	protected Integer doInBackground(Object... params) {
+	protected Object[] doInBackground(Object... params) {
 		
 		Context taskContext = (Context)params[0];
 		String login = String.valueOf(params[1]);
@@ -40,16 +42,24 @@ public class TaskNewUser extends AsyncTask<Object, Integer, Integer> {
 
 
 		Integer status = UserUtilities.inscription(taskContext, login, password);
+		Object[] result = {status, login, password};
 		
-		return status;
+		return result;
 	}
 	
 	@Override
-	protected void onPostExecute(Integer status) {
+	protected void onPostExecute(Object... result) {
+		Integer status = (Integer) result[0];
+		String login = (String) result[1];
+		String password = (String) result[2];
+		
+		Inscription registrationActivity = (Inscription) activity;
+		registrationActivity.afterSubscribe(status, login, password);
+		
 		if(dialog!=null)
         {
             dialog.dismiss();
         }
-		super.onPostExecute(status);
+		super.onPostExecute(result);
 	}
 }

@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.strangers.R;
+import com.example.strangers.controller.NumberSearch;
 import com.example.strangers.model.SearchResponse;
 import com.example.strangers.utilities.SearchPhoneNumberUtilities;
 
@@ -22,8 +23,9 @@ public class TaskSearchPhoneNumber extends AsyncTask<Object, Integer, ArrayList<
 		this.dialog = new ProgressDialog(activity);
 	}
 	
+	@Override
 	protected void onPreExecute() {		
-		this.dialog.setMessage(activity.getApplicationContext().getString(R.string.user_check_process));
+		this.dialog.setMessage(activity.getApplicationContext().getString(R.string.numberSearch_process));
 		this.dialog.show();
         super.onPreExecute();
 	}
@@ -48,6 +50,9 @@ public class TaskSearchPhoneNumber extends AsyncTask<Object, Integer, ArrayList<
 	
 	@Override
 	protected void onPostExecute(ArrayList<SearchResponse> listResponse) {
+		NumberSearch Intent = (NumberSearch) activity;
+		Intent.afterSearchPhoneNumber(listResponse);
+		
 		if(dialog!=null)
         {
             dialog.dismiss();

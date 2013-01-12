@@ -118,18 +118,10 @@ public class NumberSearch extends Activity {
     	
     	TaskSearchPhoneNumber taskSearchPhoneNumber = new TaskSearchPhoneNumber(this);
     	taskSearchPhoneNumber.execute(params);
-    	
-    	ArrayList<SearchResponse> searchPhoneNumberResponseList = null;
-		try {
-			searchPhoneNumberResponseList = taskSearchPhoneNumber.get();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-		
-		
-		if(searchPhoneNumberResponseList != null && searchPhoneNumberResponseList.size() > 0) {
+	}
+    
+    public void afterSearchPhoneNumber(ArrayList<SearchResponse> searchPhoneNumberResponseList) {
+    	if(searchPhoneNumberResponseList != null && searchPhoneNumberResponseList.size() > 0) {
     		
 	    	ListView listMessagesView = (ListView) findViewById(R.id.searchResults);
 
@@ -137,36 +129,7 @@ public class NumberSearch extends Activity {
 	    	ResponseAdapter adapter = new ResponseAdapter(getApplicationContext(), searchPhoneNumberResponseList);
 	    	listMessagesView.setAdapter(adapter);
     	}
-
-		/*if(status != null && status == HttpStatus.SC_OK) {
-			//create user
-			User user = new User(login, password);
-			
-			//store user
-			SharedPreferences stockPreferences = getSharedPreferences("strangers", Activity.MODE_PRIVATE);
-
-			Editor editor = stockPreferences.edit();
-			editor.putString("registeredUser", ObjectAndString.objectToString(user));
-			editor.apply();
-			
-			//switch to main activity
-			Bundle bundle = new Bundle();
-			bundle.putParcelable("com.example.strangers.model.User", user);
-			Intent intent = new Intent(this, NumberSearch.class);
-			intent.putExtra("currentUserBundle", bundle);
-	    	startActivity(intent);
-		} else if(status != null && status == HttpStatus.SC_UNAUTHORIZED) {
-			int duration = Toast.LENGTH_SHORT;
-			String text = getApplicationContext().getString(R.string.user_login_denied);
-			Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
-			toastError.show();
-		} else {
-			int duration = Toast.LENGTH_SHORT;
-			String text = getApplicationContext().getString(R.string.user_check_error);
-			Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
-			toastError.show();
-		}    */
-	}
+    }
     
     public void deleteUser() {
     	Log.v("user", "Suppression");
@@ -177,18 +140,11 @@ public class NumberSearch extends Activity {
 		Object params[] = {getApplicationContext(), login, password};
     	
     	TaskDeleteUser taskDeleteUser = new TaskDeleteUser(this);
-    	taskDeleteUser.execute(params);
-    	
-    	Integer status = null;
-		try {
-			status = taskDeleteUser.get();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-		
-		if(status != null && status == HttpStatus.SC_OK) {
+    	taskDeleteUser.execute(params);		
+    }
+    
+    public void afterUserDeletion(Integer status) {
+    	if(status != null && status == HttpStatus.SC_OK) {
 			int duration = Toast.LENGTH_SHORT;
 			String text = getApplicationContext().getString(R.string.user_deletion_accepted);
 			Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
@@ -215,16 +171,10 @@ public class NumberSearch extends Activity {
     	
     	TaskGetAccounts taskGetAccounts = new TaskGetAccounts(this);
     	taskGetAccounts.execute(params);
-    	
-		try {
-			setListeComptes(taskGetAccounts.get());
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-		
-		ArrayList<AccountResponse> listeComptes = getListeComptes();
+    }
+    
+    public void afterUserAccountsList(ArrayList<AccountResponse> listeComptes) {
+    	setListeComptes(listeComptes);
     	
 		if(listeComptes != null && listeComptes.size() > 0) {
 			ArrayList<String> libellesComptes = new ArrayList<String>();
@@ -282,18 +232,11 @@ public class NumberSearch extends Activity {
 		Object params[] = {getApplicationContext(), login, password, choix};
     	
     	TaskDeleteAccount taskDeleteAccount = new TaskDeleteAccount(this);
-    	taskDeleteAccount.execute(params);
-    	
-    	Integer status = null;
-		try {
-			status = taskDeleteAccount.get();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-		
-		if(status != null && status == HttpStatus.SC_OK) {
+    	taskDeleteAccount.execute(params);		
+    }
+    
+    public void afterAccountDeletion(Integer status) {
+    	if(status != null && status == HttpStatus.SC_OK) {
 			int duration = Toast.LENGTH_SHORT;
 			String text = getApplicationContext().getString(R.string.account_deletion_accepted);
 			Toast toastOk = Toast.makeText(getApplicationContext(), text, duration);

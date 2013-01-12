@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.strangers.R;
+import com.example.strangers.controller.NewMailAccount;
 import com.example.strangers.utilities.MailBoxUtilities;
 
 public class TaskNewAccount extends AsyncTask<Object, Integer, Integer> {
@@ -52,6 +53,9 @@ public class TaskNewAccount extends AsyncTask<Object, Integer, Integer> {
 	
 	@Override
 	protected void onPostExecute(Integer status) {
+		NewMailAccount account = (NewMailAccount) activity;
+		account.afterAccountCreation(status);
+		
 		if(dialog!=null)
         {
             dialog.dismiss();

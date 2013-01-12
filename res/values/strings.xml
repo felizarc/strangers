@@ -52,5 +52,6 @@
 	<string name="account_deletion_accepted">Suppression du compte prise en compte</string>
 	<string name="account_deletion_denied">Erreur lors de la suppression du compte</string>
 	<string name="delete_account_message">Voulez-vous vraiment supprimer ce compte de messagerie ?</string>
+	<string name="numberSearch_process">Recherche du numéro de téléphone en cours...</string>
 
 </resources>
