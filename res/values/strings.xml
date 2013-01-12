@@ -44,5 +44,13 @@
 	<string name="user_check_error">Erreur lors de la vérification de l\'utilisateur</string>
 	<string name="user_login_denied">Nom d\'utilisateur ou mot de passe incorrect</string>
 	<string name="add_mail_show_password">Afficher le mot de passe</string>
+	<string name="numberSearch_menu_delete_account">Supprimer un compte de messagerie</string>
+	<string name="delete_account_dialog_title">Veuillez sélectionner le compte à supprimer :</string>
+	<string name="user_account_list_error">Impossible de récupérer la liste des comptes, ou bien aucun compte n\'est associé à cet utilisateur</string>
+	<string name="confirm_delete_account_dialog_title">Confirmation</string>
+	<string name="account_deletion_process">Suppression du compte de messagerie</string>
+	<string name="account_deletion_accepted">Suppression du compte prise en compte</string>
+	<string name="account_deletion_denied">Erreur lors de la suppression du compte</string>
+	<string name="delete_account_message">Voulez-vous vraiment supprimer ce compte de messagerie ?</string>
 
 </resources>

@@ -7,9 +7,11 @@
     <string name="delete_user">user</string>
     
     <string name="new_account">accounts/new</string>
+    <string name="list_accounts">accounts</string>
     <string name="change_account_password">accounts/</string>
     <string name="delete_account">accounts/</string>
     
     <string name="search_number">find</string>
     <string name="check_user">ping</string>
+    
 </resources>

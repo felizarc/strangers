@@ -1,6 +1,7 @@
 package com.example.strangers.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpStatus;
@@ -21,16 +22,28 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.strangers.R;
+import com.example.strangers.model.AccountResponse;
 import com.example.strangers.model.SearchResponse;
 import com.example.strangers.model.User;
+import com.example.strangers.tasks.TaskDeleteAccount;
 import com.example.strangers.tasks.TaskDeleteUser;
+import com.example.strangers.tasks.TaskGetAccounts;
 import com.example.strangers.tasks.TaskSearchPhoneNumber;
 import com.example.strangers.utilities.ResponseAdapter;
 
 public class NumberSearch extends Activity {
 
 	private User currentUser;
+	private ArrayList<AccountResponse> listeComptes;
 	
+	public ArrayList<AccountResponse> getListeComptes() {
+		return listeComptes;
+	}
+
+	public void setListeComptes(ArrayList<AccountResponse> listeComptes) {
+		this.listeComptes = listeComptes;
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -70,6 +83,10 @@ public class NumberSearch extends Activity {
 				Intent intentMail = new Intent(this, NewMailAccount.class);
 				intentMail.putExtra("currentUserBundle", bundle);
 		    	startActivity(intentMail);
+		    	return true;
+		    
+			case R.id.deleteMailAccount:
+				showUserAccounts();
 		    	return true;
 		    	
 			case R.id.deleteUser:
@@ -190,6 +207,104 @@ public class NumberSearch extends Activity {
 			String text = getApplicationContext().getString(R.string.user_deletion_denied);
 			Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
 			toastError.show();
+		}
+    }
+    
+    public void showUserAccounts() {
+    	Object params[] = {getApplicationContext(), currentUser.getLogin(), currentUser.getPassword()};
+    	
+    	TaskGetAccounts taskGetAccounts = new TaskGetAccounts(this);
+    	taskGetAccounts.execute(params);
+    	
+		try {
+			setListeComptes(taskGetAccounts.get());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<AccountResponse> listeComptes = getListeComptes();
+    	
+		if(listeComptes != null && listeComptes.size() > 0) {
+			ArrayList<String> libellesComptes = new ArrayList<String>();
+			
+			Iterator<AccountResponse> iterator = this.listeComptes.iterator();
+			while(iterator.hasNext()) {
+				AccountResponse compte = iterator.next();
+				libellesComptes.add(compte.getDescription() + ": " + compte.getHost() + " / " + compte.getPort() + " / " + compte.getUsername());
+			}
+	    	
+	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	        builder.setTitle(R.string.delete_account_dialog_title);
+	        
+	        builder.setItems(libellesComptes.toArray(new CharSequence[listeComptes.size()]), new DialogInterface.OnClickListener() {
+	        	public void onClick(DialogInterface dialog, int which) {	        		
+	        		confirmAccountDelete(which);
+	        	}
+	        });
+	        
+	        AlertDialog delete_account_dialog = builder.create();
+			delete_account_dialog.show();
+    	} else {
+    		int duration = Toast.LENGTH_SHORT;
+			String text = getApplicationContext().getString(R.string.user_account_list_error);
+			Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
+			toastError.show();
+    	}    	
+    }
+    
+    public void confirmAccountDelete(int choix) {
+    	ArrayList<AccountResponse> listeComptes = getListeComptes();
+    	final int account_id = listeComptes.get(choix).getId();
+    	
+    	AlertDialog.Builder confirm_builder = new AlertDialog.Builder(this);
+		confirm_builder.setMessage(R.string.delete_account_message).setTitle(R.string.confirm_delete_account_dialog_title);
+		
+		confirm_builder.setPositiveButton(R.string.confirm_delete, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				deleteAccount(account_id);
+			}
+		});
+		
+		confirm_builder.setNegativeButton(R.string.infirm_delete, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {}
+		});
+		
+		AlertDialog confirm_dialog = confirm_builder.create();
+		confirm_dialog.show();
+    }
+    
+    public void deleteAccount(int choix) {
+    	String login = currentUser.getLogin();
+		String password = currentUser.getPassword();
+		
+		Object params[] = {getApplicationContext(), login, password, choix};
+    	
+    	TaskDeleteAccount taskDeleteAccount = new TaskDeleteAccount(this);
+    	taskDeleteAccount.execute(params);
+    	
+    	Integer status = null;
+		try {
+			status = taskDeleteAccount.get();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		
+		if(status != null && status == HttpStatus.SC_OK) {
+			int duration = Toast.LENGTH_SHORT;
+			String text = getApplicationContext().getString(R.string.account_deletion_accepted);
+			Toast toastOk = Toast.makeText(getApplicationContext(), text, duration);
+			toastOk.show();						
+		}
+		else {
+			int duration = Toast.LENGTH_SHORT;
+			String text = getApplicationContext().getString(R.string.account_deletion_denied);
+			Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
+			toastError.show();
+			Log.e("Erreur", String.valueOf(status));
 		}
     }
 }

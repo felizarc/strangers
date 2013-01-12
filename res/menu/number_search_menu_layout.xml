@@ -4,8 +4,9 @@
 	<item android:id="@+id/newMailAccount"
           android:title="@string/home_new_mail_account" />
 	
-    <item android:id="@+id/deleteUser" android:title="@string/numberSearch_menu_delete_user"></item><item android:id="@+id/unregister"
+    <item android:id="@+id/deleteMailAccount" android:title="@string/numberSearch_menu_delete_account"></item><item android:id="@+id/deleteUser" android:title="@string/numberSearch_menu_delete_user"></item><item android:id="@+id/unregister"
           android:title="@string/home_unregister" />
+    
     
     
 </menu>
