@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    	android:layout_width="fill_parent"
-    	android:layout_height="fill_parent" >
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
 
-    	<EditText
-    		android:id="@+id/loginInput"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"
-    		android:layout_alignParentTop="true"
-    		android:layout_centerHorizontal="true"
-    		android:layout_marginTop="53dp"
-    		android:ems="10"
-    		android:hint="@string/general_username"
-    		android:inputType="textEmailAddress" >
+        <EditText
+            android:id="@+id/loginInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="53dp"
+            android:ems="10"
+            android:hint="@string/general_username"
+            android:inputType="textEmailAddress" >
 
-    		<requestFocus />
-    	</EditText>
+            <requestFocus />
+        </EditText>
 
-    	<EditText
-    		android:id="@+id/passwordInput1"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"
-    		android:layout_alignLeft="@+id/loginInput"
-    		android:layout_below="@+id/loginInput"
-    		android:layout_marginTop="30dp"
-    		android:ems="10"
-    		android:hint="@string/general_password"
-    		android:inputType="textPassword" />
+        <EditText
+            android:id="@+id/passwordInput1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/loginInput"
+            android:layout_below="@+id/loginInput"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:hint="@string/general_password"
+            android:inputType="textPassword" />
 
-    	<EditText
-    		android:id="@+id/passwordInput2"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"
-    		android:layout_alignLeft="@+id/passwordInput1"
-    		android:layout_below="@+id/passwordInput1"
-    		android:ems="10"
-    		android:hint="@string/verif_password"
-    		android:inputType="textPassword" />
+        <EditText
+            android:id="@+id/passwordInput2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/passwordInput1"
+            android:layout_below="@+id/passwordInput1"
+            android:ems="10"
+            android:hint="@string/verif_password"
+            android:inputType="textPassword" />
 
-    	<Button
-    		android:id="@+id/inscriptionButton"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"
-    		android:layout_below="@+id/passwordInput2"
-    		android:layout_centerHorizontal="true"
-    		android:layout_marginTop="28dp"
-    		android:onClick="subscribe"
-    		android:text="@string/inscription_submit" />
+        <Button
+            android:id="@+id/inscriptionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passwordInput2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:onClick="subscribe"
+            android:text="@string/inscription_submit" />
 
     </RelativeLayout>

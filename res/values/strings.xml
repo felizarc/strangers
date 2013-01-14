@@ -53,5 +53,8 @@
 	<string name="account_deletion_denied">Erreur lors de la suppression du compte</string>
 	<string name="delete_account_message">Voulez-vous vraiment supprimer ce compte de messagerie ?</string>
 	<string name="numberSearch_process">Recherche du numéro de téléphone en cours...</string>
+	<string name="register_title_text">Pas de compte ?</string>
+	<string name="register_button_text">Inscription</string>
+	<string name="phone_number_text">Numéro de téléphone</string>
 
 </resources>

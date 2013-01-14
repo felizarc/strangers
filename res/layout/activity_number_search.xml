@@ -17,14 +17,16 @@
     	android:onClick="searchPhoneNumber" />
 
     <EditText
-    	android:id="@+id/phoneNumberInput"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:layout_alignBottom="@+id/searchButton"
-    	android:layout_toLeftOf="@+id/searchButton"
-    	android:ems="10"
-    	android:inputType="number"
-    	tools:ignore="TextFields" >
+        android:id="@+id/phoneNumberInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/searchButton"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/searchButton"
+        android:ems="10"
+        android:hint="@string/phone_number_text"
+        android:inputType="number"
+        tools:ignore="TextFields" >
 
     	<requestFocus />
     </EditText>

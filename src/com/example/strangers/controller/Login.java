@@ -41,11 +41,15 @@ public class Login extends Activity {
 			NavUtils.navigateUpFromSameTask(this);
 			return true;*/
 		case R.id.newAccount:
-			Intent intent = new Intent(this, Inscription.class);
-	    	startActivity(intent);
+			register(null);
 	    	return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void register(View v) {
+		Intent intent = new Intent(this, Inscription.class);
+    	startActivity(intent);
 	}
 	
 	//Action du bouton de connexion
