@@ -2,7 +2,6 @@ package com.example.strangers.controller;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpStatus;
 
@@ -23,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.strangers.R;
 import com.example.strangers.model.AccountResponse;
+import com.example.strangers.model.GeneralSearchNumberResponse;
 import com.example.strangers.model.SearchResponse;
 import com.example.strangers.model.User;
 import com.example.strangers.tasks.TaskDeleteAccount;
@@ -120,14 +120,31 @@ public class NumberSearch extends Activity {
     	taskSearchPhoneNumber.execute(params);
 	}
     
-    public void afterSearchPhoneNumber(ArrayList<SearchResponse> searchPhoneNumberResponseList) {
-    	if(searchPhoneNumberResponseList != null && searchPhoneNumberResponseList.size() > 0) {
+    public void afterSearchPhoneNumber(GeneralSearchNumberResponse generalSearchNumberResponse) {
+    	
+    	ListView listMessagesView = (ListView) findViewById(R.id.searchResults);
+  	
+    	
+    	if(generalSearchNumberResponse.getStatus().equals(this.getString(R.string.number_found_result))) {    
     		
-	    	ListView listMessagesView = (ListView) findViewById(R.id.searchResults);
-
-	    	//Remplissage de la liste par un adapter
-	    	ResponseAdapter adapter = new ResponseAdapter(getApplicationContext(), searchPhoneNumberResponseList);
-	    	listMessagesView.setAdapter(adapter);
+	    	if(generalSearchNumberResponse.getSearchResponseList() != null && generalSearchNumberResponse.getSearchResponseList().size() > 0) {
+	    		
+		    	
+		    	
+		    	//Remplissage de la liste par un adapter
+		    	ResponseAdapter adapter = new ResponseAdapter(getApplicationContext(), generalSearchNumberResponse.getSearchResponseList());
+		    	listMessagesView.setAdapter(adapter);
+	    	}
+    	}
+    	else {
+    		
+        	//erase old results (reset list view)
+    		listMessagesView.setAdapter(new ResponseAdapter(getApplicationContext(), new ArrayList<SearchResponse>()));
+    		
+    		int duration = Toast.LENGTH_SHORT;
+			String text = getApplicationContext().getString(R.string.no_number_found_message);
+			Toast toastError = Toast.makeText(getApplicationContext(), text, duration);
+			toastError.show();
     	}
     }
     

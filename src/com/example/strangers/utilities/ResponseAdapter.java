@@ -1,10 +1,6 @@
 package com.example.strangers.utilities;
 
-import java.util.List;
-
-import com.example.strangers.R;
-import com.example.strangers.model.SearchResponse;
-
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,17 +9,20 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.strangers.R;
+import com.example.strangers.model.SearchResponse;
+
 
 public class ResponseAdapter extends BaseAdapter {
 
-	List<SearchResponse> listResponse;
+	ArrayList<SearchResponse> listResponse;
 	LayoutInflater inflater;
 
-	public ResponseAdapter(Context context,List<SearchResponse> listResponse) {
+	public ResponseAdapter(Context context,ArrayList<SearchResponse> listResponse) {
 		inflater = LayoutInflater.from(context);
 		this.listResponse = listResponse;
 	}
-	
+
 	public int getCount() {
 		return listResponse.size();
 	}

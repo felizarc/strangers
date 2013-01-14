@@ -1,7 +1,5 @@
 package com.example.strangers.tasks;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -9,10 +7,10 @@ import android.os.AsyncTask;
 
 import com.example.strangers.R;
 import com.example.strangers.controller.NumberSearch;
-import com.example.strangers.model.SearchResponse;
+import com.example.strangers.model.GeneralSearchNumberResponse;
 import com.example.strangers.utilities.SearchPhoneNumberUtilities;
 
-public class TaskSearchPhoneNumber extends AsyncTask<Object, Integer, ArrayList<SearchResponse>> {
+public class TaskSearchPhoneNumber extends AsyncTask<Object, Integer, GeneralSearchNumberResponse> {
 	
 	ProgressDialog dialog;
 	Activity activity;
@@ -37,26 +35,27 @@ public class TaskSearchPhoneNumber extends AsyncTask<Object, Integer, ArrayList<
 	}
 	
 	@Override
-	protected ArrayList<SearchResponse> doInBackground(Object... params) {
+	protected GeneralSearchNumberResponse doInBackground(Object... params) {
 		
 		Context taskContext = (Context)params[0];
 		String currentUserLogin = String.valueOf(params[1]);
 		String currentUserPassword = String.valueOf(params[2]);		
 		String phoneNumber = String.valueOf(params[3]);		
 
-		ArrayList<SearchResponse> listResponse = SearchPhoneNumberUtilities.addMailBox(taskContext, currentUserLogin, currentUserPassword, phoneNumber);
-		return listResponse;
+		GeneralSearchNumberResponse generalSearchNumberResponse = SearchPhoneNumberUtilities.addMailBox(taskContext, currentUserLogin, currentUserPassword, phoneNumber);
+		
+		return generalSearchNumberResponse;
 	}
 	
 	@Override
-	protected void onPostExecute(ArrayList<SearchResponse> listResponse) {
+	protected void onPostExecute(GeneralSearchNumberResponse generalSearchNumberResponse) {
 		NumberSearch Intent = (NumberSearch) activity;
-		Intent.afterSearchPhoneNumber(listResponse);
+		Intent.afterSearchPhoneNumber(generalSearchNumberResponse);
 		
 		if(dialog!=null)
         {
             dialog.dismiss();
         }
-		super.onPostExecute(listResponse);
+		super.onPostExecute(generalSearchNumberResponse);
 	}
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="error_research">La recherche n\'a pas fonctionnée !</string>
+    <string name="no_number_found_message">Numéro non trouvé dans les mails !</string>
+    
+    <string name="no_number_found_result">not_found</string>
+    <string name="number_found_result">found</string>
+    
+</resources>

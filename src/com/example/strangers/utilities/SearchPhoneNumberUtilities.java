@@ -20,11 +20,12 @@ import android.util.Base64;
 import android.util.Log;
 
 import com.example.strangers.R;
+import com.example.strangers.model.GeneralSearchNumberResponse;
 import com.example.strangers.model.SearchResponse;
 
 public class SearchPhoneNumberUtilities {
 
-	public static ArrayList<SearchResponse> addMailBox(Context context, String currentUserLogin, String currentUserPassword, String phoneNumber) {
+	public static GeneralSearchNumberResponse addMailBox(Context context, String currentUserLogin, String currentUserPassword, String phoneNumber) {
 				
 		String baseUrl = context.getString(R.string.service_base_url_https);
 		String registrationService = context.getString(R.string.search_number);
@@ -37,6 +38,7 @@ public class SearchPhoneNumberUtilities {
         String authParams = currentUserLogin+":"+currentUserPassword;
         httppost.setHeader("Authorization", "Basic "+Base64.encodeToString(authParams.getBytes(), Base64.NO_WRAP));
                 
+        GeneralSearchNumberResponse generalSearchNumberResponse = new GeneralSearchNumberResponse(null, null);
         ArrayList<SearchResponse> searchResponseList = new ArrayList<SearchResponse>();
         
         try {
@@ -70,9 +72,13 @@ public class SearchPhoneNumberUtilities {
 																	jsonObjectResponse.getString("status"));
 				
 				searchResponseList.add(searchResponse);
+				
+				generalSearchNumberResponse.setSearchResponseList(searchResponseList);
+				//TODO Change when multi results will be availables
+				generalSearchNumberResponse.setStatus(searchResponse.getStatus());
+				
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				generalSearchNumberResponse.setStatus(context.getString(R.string.no_number_found_result));
 			}
 
 			/*try {
@@ -103,13 +109,13 @@ public class SearchPhoneNumberUtilities {
             
             
         } catch (ClientProtocolException e) {
-			//TODO complete exception
+			generalSearchNumberResponse.setStatus(context.getString(R.string.no_number_found_result));
         } catch (IOException e) {
-			//TODO complete exception
+			generalSearchNumberResponse.setStatus(context.getString(R.string.no_number_found_result));
         } catch (SecurityException e) {
-        	
+			generalSearchNumberResponse.setStatus(context.getString(R.string.no_number_found_result));
         }
         
-        return searchResponseList;
+        return generalSearchNumberResponse;
 	}
 }

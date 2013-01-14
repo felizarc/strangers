@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 
 import com.example.strangers.R;
 import com.example.strangers.controller.Inscription;
-import com.example.strangers.controller.Login;
 import com.example.strangers.utilities.UserUtilities;
 
 public class TaskNewUser extends AsyncTask<Object, Integer, Object[]> {
